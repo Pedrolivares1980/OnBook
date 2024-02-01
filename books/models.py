@@ -45,7 +45,7 @@ class Book(models.Model):
     publisher = models.CharField(max_length=100, null=True)
     publish_date = models.DateField( null=True)
     language = models.CharField(max_length=50, null=True)
-    cover_image = models.ImageField(upload_to='book_covers', blank=True, null=True)
+    cover_image = models.URLField(blank=True, null=True)
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, null=True, blank=True) 
     description = models.TextField( null=True)
     is_available = models.BooleanField(default=True)

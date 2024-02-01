@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class BookForm(forms.ModelForm):
     """Form for Book model with custom validations."""
+    cover_image = forms.URLField(help_text="Enter the URL of the book cover image.")
     class Meta:
         model = Book
         fields = ['name', 'author', 'publisher', 'publish_date', 'language', 'cover_image', 'category', 'description', 'is_available']
