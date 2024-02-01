@@ -84,10 +84,12 @@ WSGI_APPLICATION = "OnBook.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = "postgres://mydb_0eqi_user:jbIUKyIN2gioc1yZvlBGtwXIUvvwRJI0@dpg-cmtm1ja1hbls73cuch90-a.frankfurt-postgres.render.com/mydb_0eqi"
+
 DATABASES = {
     "default": dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
 }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
