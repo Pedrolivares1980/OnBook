@@ -1,0 +1,53 @@
+{% extends 'books/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container text-center">
+  <h1>Welcome to OnBook</h1>
+  <p>Explore our collection of books and manage your rentals.</p>
+</div>
+
+<div class="container bg-body-secondary mt-4">
+  <div class="row">
+    <div class="col-lg-4 order-lg-1 p-1">
+      <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          {% for book in random_books %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}">
+            <div class="carousel-caption">
+              <h5 class="text-light text-center mb-2">{{ book.name }}</h5>
+              <p class="text-light text-center">{{ book.author }}</p>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#bookCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#bookCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-8 order-lg-2">
+      <div class="container">
+        <div class="text-center">
+          <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
+        </div>
+        <div class="mt-md-4">
+          <h2 class="text-center" >Discover Our Collection</h2>
+          <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod enim eget nisi convallis, auctor
+            sodales urna mollis. Nullam suscipit, nisi eu bibendum venenatis, elit arcu efficitur orci, nec iaculis
+            lacus leo eu massa. In in ultricies tortor. Fusce eu ex bibendum, dictum libero eu, euismod mi. Curabitur
+            id velit ac est tristique varius et ac tortor. Aliquam laoreet felis eget massa fermentum, at mattis nisl
+            hendrerit. Nulla facilisi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

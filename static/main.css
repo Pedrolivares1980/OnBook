@@ -1,0 +1,291 @@
+/* Import Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Poppins:wght@400;500&display=swap");
+
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg-dark: #966C47;
+  --bg-light: bisque;
+  --container-light: #6085A6;
+  --container-dark: #2C75DB;
+  --border: #038282;
+  --text-color: black;
+  --title-color: black;
+  --text-dark: black;
+
+  /* font-sizes */
+
+  /* Mobile devices */
+  --fs-sm-mobile: .8rem;
+  --fs-p-mobile: .9rem;
+  --fs-h1-mobile: 1.8rem;
+  --fs-h2-mobile: 1.5rem;
+  --fs-h3-mobile: 1.3rem;
+  --fs-h4-mobile: 1.2rem;
+  --fs-h5-mobile: 1.1rem;
+
+  /*  Tablets */
+  --fs-sm-tablet: .9rem;
+  --fs-p-tablet: 1rem;
+  --fs-h1-tablet: 2.5rem;
+  --fs-h2-tablet: 2.3rem;
+  --fs-h3-tablet: 2.1rem;
+  --fs-h4-tablet: 1.8rem;
+  --fs-h5-tablet: 1.5rem;
+
+  /*  Laptops - Desktops */
+  --fs-sm-laptop: .9rem;
+  --fs-p-laptop: 1.2rem;
+  --fs-h1-laptop: 4rem;
+  --fs-h2-laptop: 3.5rem;
+  --fs-h3-laptop: 3rem;
+  --fs-h4-laptop: 2.5rem;
+  --fs-h5-laptop: 2rem;
+}
+
+/* Scroll bar */
+
+::-webkit-scrollbar {
+  width: .8rem;
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: .5rem;
+  background-color: var(--container-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--container-dark);
+}
+
+body{
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  margin-top: 5.1rem;
+}
+
+main{
+  min-height: 100vh; /* Ajusta esto según tus necesidades */
+  padding-bottom: 6rem; /* Espacio adicional para el footer */
+}
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  .bg-steel {
+    background-color: #5f788a;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #cbd5db;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+  
+  .site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  /* Containers */
+  .content-section {
+    background: black;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    color:white
+  }
+  
+  .article-title {
+    color: #444444;
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+  .article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .account-heading {
+    font-size: 2.5rem;
+  }
+
+/*--------------------------------------------- Messagin app----------------------------------- */
+
+  .messages {
+    background-color: #428bca;
+    border-radius: 1rem;
+    min-height: 650px;
+    padding: 1.2rem;
+}
+
+.sent-message {
+    width: 50%;
+    text-align: center;
+    background-color: #DCF8C6; /* Light green background for sent messages */
+    padding: .7rem;
+    padding-left: 3rem;
+    margin: 1rem;
+    margin-right: 50%;
+    border-radius: 3rem;
+}
+
+.received-message {
+    width: 50%;
+    text-align: center;
+    background-color: #ECE5DD; /* Light gray background for received messages */
+    padding: .7rem;
+    padding-right: 3rem;
+    margin: 1rem;
+    margin-left: 50%;
+    border-radius: 3rem;
+}
+
+/*----------------------------------------------- Profile--------------------------------------- */
+
+/* ------------------------------------------------Book cover */
+
+
+
+/* Details */
+
+/* Tables */
+.book-cover-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-cover {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+/*  -----------------------------------------------Django Messages----------------------------*/
+
+.alert {
+  text-align: center;
+  font-weight: bold;
+  list-style: none;
+}
+
+/* --------------------------------------------------Home */
+/* Carrousel */
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mejorar la legibilidad */
+  position: absolute;
+  top: 0; /* Posición desde la parte superior del carrusel */
+  left: 50%;
+  transform: translateX(-50%); /* Centra la leyenda horizontalmente */
+  width: 100%;
+  padding: 0.25rem;
+  font-size: 12px; /* Tamaño de fuente para móviles */
+  text-align: center; /* Centra el texto horizontalmente */
+  height: 65px;
+}
+
+.carousel-item img {
+  max-height: 600px; /* Ajusta esto según la altura máxima deseada */
+  object-fit: contain; /* Esto asegura que la imagen cubra el área asignada sin distorsionarse */
+  margin-left: auto;
+  margin-right: auto;
+  width: auto; /* Esto permitirá que el ancho sea automático y mantenga la relación de aspecto */
+}
+
+/* Estilos para pantallas más grandes */
+@media (min-width: 768px) {
+  .carousel-caption {
+    font-size: 16px; /* Tamaño de fuente para pantallas más grandes */
+    padding: 0.5rem;
+  }
+
+  .carousel-item img {
+    max-height: 1000px;
+  }
+  
+}
+
+/* ------------------------------------------------------------------------- FOOTER -------------------------------------------------------------------------  */
+
+footer {
+  margin-top: 6rem;
+  background-color: var(--bg-dark);
+  color: var(--title-color);
+}
+
+.social_icon {
+  border-radius: 50%;
+  background-color: var(--bg-dark);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: .3125rem;
+  transition: all .5s ease-in-out;
+}
+
+.whatsapp_icon i {
+  color: #25D366;
+}
+
+.github_icon i {
+  color: #171515;
+}
+
+.youtube_icon i {
+  color: #FF0000;
+}
+
+.social_icon:hover {
+  transform: scale(1.2);
+  filter: brightness(1.2) saturate(1.5);
+}
+

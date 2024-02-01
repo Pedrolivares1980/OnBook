@@ -1,0 +1,35 @@
+{% extends 'books/base.html' %}
+{% block content %}
+<div>
+  <form method="GET" action="{% url 'admin_users' %}">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Buscar usuario" name="q" value="{{ request.GET.q }}">
+    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+  </div>
+  </form>
+  <a href="{% url 'admin_users' %}" class="btn btn-outline-info mb-3">Limpiar Búsqueda</a>
+</div>
+<h2>Lista de Usuarios</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <a href="{% url 'user_detail' user.id %}" class="btn btn-info">Detalles</a>
+        <a href="{% url 'edit_user' user.id %}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+  {% if title %}
+  <title>OnBook - {{ title }}</title>
+  {% else %}
+  <title>OnBook</title>
+  {% endif %}
+  <meta name="description" content="Rent Books app">
+  <meta name="keywords" content="book, rent, post, blog, message">
+  <meta name="author" content="Pedro Olivares">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar navbar-expand-md bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand mr-4" href="{% url 'books_home' %}">OnBook</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+          aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="{% url 'books_about' %}">About</a>
+            <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
+          </div>
+          <!-- Navbar Right Side -->
+          <div class="navbar-nav ms-auto">
+            {% if user.is_authenticated and user.is_staff %}
+            <a class="nav-item nav-link" href="{% url 'book_admin' %}">Admin Books</a>
+            <a class="nav-item nav-link" href="{% url 'admin_users' %}">Admin Users</a>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-item nav-link" href="{% url 'inbox' %}">Messages</a>
+            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+    </nav>
+
+  </header>
+  <main role="main" class="container mb-3	">
+    <div class="row">
+      <div class="col-12">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% block content %}{% endblock %}
+      </div>
+
+  </main>
+
+  <footer class="footer mt-auto py-3 text-center">
+    <div class="container">
+      <div class="row">
+        <!-- Slogan -->
+        <div class="col-md-4">
+          <h4 class="logo">EventSphere</h4>
+          <p>Discover and Book your next event with us.</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="col-md-4">
+          <h4>Contact</h4>
+          <ul class="list-unstyled ">
+            <li>Email: eventsphere@example.com</li>
+            <li>Teléfono: +1 234 567 890</li>
+          </ul>
+        </div>
+
+        <!-- SSNN -->
+        <div class="col-md-4">
+          <h4>Social Network</h4>
+          <a href="https://www.whatsapp.com/tuUsuario" class="text-decoration-none social_icon me-2 whatsapp_icon">
+            <i class="bi-whatsapp"></i>
+          </a>
+          <a href="https://github.com/Pedrolivares1980?tab=repositories"
+            class="text-decoration-none social_icon me-2 github_icon">
+            <i class="bi-github"></i>
+          </a>
+          <a href="https://www.youtube.com/tuCanal" class="text-decoration-none social_icon me-2 youtube_icon">
+            <i class="bi-youtube"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

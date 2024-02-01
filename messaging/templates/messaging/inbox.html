@@ -1,0 +1,33 @@
+{% extends "books/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2>Inbox</h2>
+
+<!-- Form to start a new conversation -->
+<div class="container">
+    <h3>Start a New Conversation</h3>
+    <form method="post" action="{% url 'start_conversation' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <select class="form-select" name="recipient">
+                {% for user in all_users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Start Conversation</button>
+    </form>
+</div>
+
+<div class="list-group mt-3">
+    <!-- Display users with conversations -->
+    <h3>Open Conversations</h3>
+    {% for user in users_with_conv %}
+    <a href="{% url 'conversation' user.id %}" class="list-group-item list-group-item-action">
+        {{ user.username }}
+    </a>
+    {% empty %}
+    <p>No conversations yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <h2>Rent Confirmation</h2>
+    <p>Are you sure you want to rent "{{ book.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm Rent</button>
+    </form>
+    <a href="{% url 'book_detail' book.id %}">Cancel</a>
+{% endblock %}

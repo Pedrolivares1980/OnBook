@@ -1,0 +1,115 @@
+{% extends 'books/base.html' %}
+{% load static %}
+{% block content %}
+<h1>Book Administration</h1>
+
+<!-- Search and Filter Form -->
+<form method="get" action="{% url 'book_admin' %}">
+    <input type="text" name="q" placeholder="Search for books..." value="{{ request.GET.q }}">
+
+    <!-- Dropdown for Authors -->
+    <select name="author">
+        <option value="">--Filter by Author--</option>
+        {% for author in authors %}
+            <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Dropdown for Publishers -->
+    <select name="publisher">
+        <option value="">--Filter by Publisher--</option>
+        {% for publisher in publishers %}
+            <option value="{{ publisher }}" {% if request.GET.publisher == publisher %}selected{% endif %}>{{ publisher }}</option>
+        {% endfor %}
+    </select>
+
+    <!-- Dropdown for Categories -->
+    <select name="category">
+        <option value="">--Filter by Category--</option>
+        {% for category, category_display in categories.items %}
+            <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category_display }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+
+<!-- Add New Book Button -->
+<div>
+    <a href="{% url 'book_add' %}" class="btn btn-success">Add New Book</a>
+</div>
+
+<!-- Book List Table -->
+<div>
+    <h2>Manage Books</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Cover</th>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Publish Date</th>
+                <th>Language</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Disponibility</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>
+                    {% if book.cover_image %}
+                    <img src="{{ book.cover_image.url }}" alt="{{ book.name }}"
+                        style="max-height: 100px; max-width: 100px;">
+                    {% else %}
+                    <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image"
+                        style="max-height: 100px; max-width: 100px;">
+                    {% endif %}
+                </td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.publisher }}</td>
+                <td>{{ book.publish_date }}</td>
+                <td>{{ book.language }}</td>
+                <td>{{ book.category }}</td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.is_available }}</td>
+                <td>
+                    <a href="{% url 'book_update' book.id %}" class="btn btn-secondary">Edit</a>
+                    <a href="{% url 'book_delete' book.id %}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No books available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Pagination Controls -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">first</a>
+        <a
+            href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+        <a
+            href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

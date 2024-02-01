@@ -1,0 +1,9 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <h2>Detalles del Usuario: {{ user.username }}</h2>
+    <p>Email: {{ user.email }}</p>
+    <!-- Aquí puedes añadir más detalles del usuario -->
+    <a href="{% url 'edit_user' user.id %}" class="btn btn-primary">Editar Usuario</a>
+    <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Eliminar Usuario</a>
+    <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Back</button>
+{% endblock %}
