@@ -14,7 +14,13 @@
         <div class="carousel-inner">
           {% for book in random_books %}
           <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <!-- Check if book has a cover_image -->
+            {% if book.cover_image %}
             <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}">
+            {% else %}
+            <!-- Display a default image or leave this space blank if no cover image exists -->
+            <img src="{% static 'default_cover_image_path.jpg' %}" class="d-block w-100" alt="Default Image">
+            {% endif %}
             <div class="carousel-caption">
               <h5 class="text-light text-center mb-2">{{ book.name }}</h5>
               <p class="text-light text-center">{{ book.author }}</p>
@@ -22,6 +28,7 @@
           </div>
           {% endfor %}
         </div>
+        <!-- Carousel controls -->
         <a class="carousel-control-prev" href="#bookCarousel" role="button" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -38,12 +45,8 @@
           <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
         </div>
         <div class="mt-md-4">
-          <h2 class="text-center" >Discover Our Collection</h2>
-          <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod enim eget nisi convallis, auctor
-            sodales urna mollis. Nullam suscipit, nisi eu bibendum venenatis, elit arcu efficitur orci, nec iaculis
-            lacus leo eu massa. In in ultricies tortor. Fusce eu ex bibendum, dictum libero eu, euismod mi. Curabitur
-            id velit ac est tristique varius et ac tortor. Aliquam laoreet felis eget massa fermentum, at mattis nisl
-            hendrerit. Nulla facilisi.</p>
+          <h2 class="text-center">Discover Our Collection</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
         </div>
       </div>
     </div>
