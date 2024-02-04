@@ -42,7 +42,7 @@ class BookForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(BookForm, self).__init__(*args, **kwargs)
-        self.fields["publish_date"].input_formats = ("%d/%m/%Y",)
+        self.fields["publish_date"].input_formats = ["%d/%m/%Y", "%Y-%m-%d"]
 
     def clean_publish_date(self):
         """Ensure publish date is not in the future."""
