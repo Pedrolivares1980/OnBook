@@ -13,8 +13,7 @@
         <div class="carousel-inner">
           {% for book in random_books %}
           <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}"
-              style="max-height: 300px; max-width: 400px;">
+            <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}">
           </div>
           {% endfor %}
         </div>
@@ -31,7 +30,7 @@
     </div>
   </div>
 </div>
-<div class="col-lg-8 order-lg-2">
+<div class="col-lg-8">
   <div class="container">
     <div class="text-center">
       <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
