@@ -19,9 +19,14 @@ def inbox(request):
         Q(sent_messages__receiver=request.user) | 
         Q(received_messages__sender=request.user)
     ).distinct().exclude(id=request.user.id)
+
+    # Get all unread messages for the current user
+    unread_messages = ChatMessage.objects.filter(receiver=request.user, is_read=False)
+
     return render(request, 'messaging/inbox.html', {
         'users_with_conv': users_with_conv, 
-        'all_users': all_users
+        'all_users': all_users,
+        'unread_messages': unread_messages
     })
 
 @login_required
