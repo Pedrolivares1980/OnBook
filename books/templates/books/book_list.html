@@ -35,7 +35,8 @@
 <!-- Book List Table -->
 <div>
   <h2>Manage Books</h2>
-  <table class="table">
+  <div class="table-responsive">
+    <table class="table">
       <thead>
           <tr>
               <th>Cover</th>
@@ -68,7 +69,7 @@
               <td>{{ book.publish_date }}</td>
               <td>{{ book.language }}</td>
               <td>{{ book.category }}</td>
-              <td>{{ book.description }}</td>
+              <td class="desc-limited">{{ book.description }}</td>
               <td>{{ book.is_available }}</td>
               <td>
                 <a href="{% url 'book_detail' book.id %}" class="btn btn-secondary">View Book</a>
@@ -81,6 +82,7 @@
           {% endfor %}
       </tbody>
   </table>
+  </div>
 </div>
 
 <!-- Pagination Links -->
