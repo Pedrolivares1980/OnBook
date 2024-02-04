@@ -1,12 +1,60 @@
 {% extends 'books/base.html' %}
+{% load static %}
+
 {% block content %}
 <h2>{% if object %}Edit Book{% else %}Add a New Book{% endif %}</h2>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
+
+  <!-- Name Field -->
+  <label for="id_name">Name:</label>
+  <input type="text" name="name" id="id_name" maxlength="200" placeholder="Enter the full title of the book"
+    value="{{ form.name.value|default_if_none:'' }}" class="form-control" />
+
+  <!-- Author Field -->
+  <label for="id_author">Author:</label>
+  <input type="text" name="author" id="id_author" maxlength="100" placeholder="Name of the author or authors"
+    value="{{ form.author.value|default_if_none:'' }}" class="form-control" />
+
+  <!-- Publisher Field -->
+  <label for="id_publisher">Publisher:</label>
+  <input type="text" name="publisher" id="id_publisher" maxlength="100"
+    placeholder="Enter the name of the publisher company" value="{{ form.publisher.value|default_if_none:'' }}"
+    class="form-control" />
+
+  <!-- Publish Date Field -->
   <label for="id_publish_date">Publish Date:</label>
-  {{ form.publish_date }}
-  <small class="form-text text-muted">{{ form.publish_date.help_text }}</small>
-  {{ form.as_p }}
+  <input type="date" name="publish_date" id="id_publish_date" placeholder="DD/MM/YYYY"
+    value="{{ form.publish_date.value|default_if_none:'' }}" class="form-control" />
+
+  <!-- Language Field -->
+  <label for="id_language">Language:</label>
+  <input type="text" name="language" id="id_language" maxlength="50" placeholder="Book language"
+    value="{{ form.language.value|default_if_none:'' }}" class="form-control" />
+
+  <!-- Cover Image Field -->
+  <label for="id_cover_image">Cover Image:</label>
+  <input type="file" name="cover_image" id="id_cover_image" class="form-control" />
+
+  <!-- Category Field -->
+  <label for="id_category">Category:</label>
+  <select name="category" id="id_category" class="form-control">
+    <option value="">--Select the most fitting category for the book--</option>
+    {% for value, display in form.fields.category.choices %}
+    <option value="{{ value }}" {% if form.category.value==value %} selected {% endif %}>{{ display }}</option>
+    {% endfor %}
+  </select>
+
+  <!-- Description Field -->
+  <label for="id_description">Description:</label>
+  <textarea name="description" id="id_description" placeholder="Enter a brief description about this book"
+    class="form-control">{{ form.description.value|default_if_none:'' }}</textarea>
+
+  <!-- Is Available Field -->
+  <label for="id_is_available">Is Available:</label>
+  <input type="checkbox" name="is_available" id="id_is_available" {% if form.is_available.value %} checked {% endif %}
+    class="form-check-input" />
+
   <button type="submit" class="btn btn-primary">Save Changes</button>
   <a href="{% url 'book_list' %}" class="btn btn-outline-secondary">Back</a>
 </form>
