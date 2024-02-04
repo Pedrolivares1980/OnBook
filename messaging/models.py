@@ -12,5 +12,7 @@ class ChatMessage(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     replied_to = models.ForeignKey('self', on_delete=models.CASCADE, related_name='replies', null=True, blank=True)
 
+    is_read = models.BooleanField(default=False)
+
     def __str__(self):
-        return f'Message from {self.sender} to {self.receiver} - {self.timestamp.strftime("%Y-%m-%d %H:%M")}'
+        return f'Message from {self.sender} to {self.receiver} - {self.timestamp.strftime("%d-%m-%Y %H:%M")}'
