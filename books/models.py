@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Book(models.Model):
-    CATEGORY_CHOICES = [
+    CATEGORY_CHOICES = sorted([
         ("novel", "Novel"),
         ("fiction", "Fiction"),
         ("non_fiction", "Non-Fiction"),
@@ -38,7 +38,7 @@ class Book(models.Model):
         ("comics", "Comics"),
         ("romance", "Romance"),
         ("erotic", "Erotic"),
-    ]
+    ], key=lambda x: x[1])
 
     name = models.CharField(max_length=200, null=True)
     author = models.CharField(max_length=100, null=True)
