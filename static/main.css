@@ -231,23 +231,27 @@ main{
   height: 65px;
 }
 
-.carousel-item img {
-  max-height: 600px; /* Ajusta esto según la altura máxima deseada */
-  object-fit: contain; /* Esto asegura que la imagen cubra el área asignada sin distorsionarse */
-  margin-left: auto;
-  margin-right: auto;
-  width: auto; /* Esto permitirá que el ancho sea automático y mantenga la relación de aspecto */
+.carousel-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 800px; /* Tamaño del carrusel deseado */
+  height: 600px;
+  overflow: hidden; /* Oculta partes de las imágenes que exceden el tamaño */
 }
+
+.carousel-image {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto; /* Añade márgenes para centrar las imágenes */
+}
+
 
 /* Estilos para pantallas más grandes */
 @media (min-width: 768px) {
   .carousel-caption {
     font-size: 16px; /* Tamaño de fuente para pantallas más grandes */
     padding: 0.5rem;
-  }
-
-  .carousel-item img {
-    max-height: 1000px;
   }
   
 }
