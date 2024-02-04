@@ -21,7 +21,6 @@
                 <p class="card-text">Language: {{ object.language }}</p>
                 <p class="card-text">Category: {{ object.get_category_display }}</p>
                 <p class="card-text">Description: {{ object.description }}</p>
-                <p class="card-text">Availability: {% if book.is_available %}Available{% else %}Not Available{% endif %}</p>
                 {% if book.is_available %}
                 <form method="post" action="{% url 'rent_book' book.id %}">
                     {% csrf_token %}
