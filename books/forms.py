@@ -80,12 +80,14 @@ class BookForm(forms.ModelForm):
                         f"UnidentifiedImageError: The image {cover_image.name} could not be processed."
                     )
 
-                    # Add an error message to the form to inform the user
+                    # Add an error message to the form to inform the user with the 'error' message tag
                     self.add_error(
                         "cover_image",
                         ValidationError(
                             "The uploaded image could not be processed. Please try again with a different image.",
                             code="invalid",
+                            params={"value": self.cleaned_data["cover_image"]},
+                            message="error",
                         ),
                     )
 

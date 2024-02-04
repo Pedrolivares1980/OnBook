@@ -83,6 +83,7 @@ class BookCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
     form_class = BookForm
     template_name = 'books/book_form.html'
     success_url = reverse_lazy('book_list')
+    
     def form_valid(self, form):
         response = super().form_valid(form)
         messages.success(self.request, 'Book added successfully.')
