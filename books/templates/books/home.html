@@ -15,15 +15,8 @@
           <div class="carousel-item {% if forloop.first %}active{% endif %} ">
             <!-- Check if book has a cover_image -->
             {% if book.cover_image %}
-            <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }}">
-            {% else %}
-            <!-- Display a default image or leave this space blank if no cover image exists -->
-            <img src="{% static 'default_cover_image_path.jpg' %}" class="d-block w-100" alt="Default Image">
+            <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }} " style="max-height: 400px; max-width: 300px;">
             {% endif %}
-            <div class="carousel-caption">
-              <h5 class="text-light text-center mb-2">{{ book.name }}</h5>
-              <p class="text-light text-center">{{ book.author }}</p>
-            </div>
           </div>
           {% endfor %}
         </div>

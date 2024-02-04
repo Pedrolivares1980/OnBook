@@ -54,7 +54,7 @@
         <tr>
           <td class="align-middle">
             {% if book.cover_image %}
-            <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid">
+            <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid" style="max-height: 100px; max-width: 100px;">
             {% else %}
             <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
             {% endif %}

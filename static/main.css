@@ -217,31 +217,7 @@ main{
 }
 
 /* --------------------------------------------------Home */
-/* Carrousel */
-.carousel-caption {
-  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para mejorar la legibilidad */
-  position: absolute;
-  top: 0; /* Posición desde la parte superior del carrusel */
-  left: 50%;
-  transform: translateX(-50%); /* Centra la leyenda horizontalmente */
-  width: 100%;
-  padding: 0.25rem;
-  font-size: 12px; /* Tamaño de fuente para móviles */
-  text-align: center; /* Centra el texto horizontalmente */
-  height: 65px;
-}
 
-
-
-
-/* Estilos para pantallas más grandes */
-@media (min-width: 768px) {
-  .carousel-caption {
-    font-size: 16px; /* Tamaño de fuente para pantallas más grandes */
-    padding: 0.5rem;
-  }
-  
-}
 
 
 /* Table description responsive */

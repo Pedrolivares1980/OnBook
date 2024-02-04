@@ -53,10 +53,7 @@
           <th>Author</th>
           <th>Publisher</th>
           <th>Publish Date</th>
-          <th>Language</th>
           <th>Category</th>
-          <th>Description</th>
-          <th>Disponibility</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -75,10 +72,7 @@
           <td>{{ book.author }}</td>
           <td>{{ book.publisher }}</td>
           <td>{{ book.publish_date }}</td>
-          <td>{{ book.language }}</td>
           <td>{{ book.category }}</td>
-          <td class="desc-limited">{{ book.description }}</td>
-          <td>{{ book.is_available }}</td>
           <td>
             <a href="{% url 'book_update' book.id %}" class="btn btn-secondary">Edit</a>
             <a href="{% url 'book_delete' book.id %}" class="btn btn-danger">Delete</a>
