@@ -38,7 +38,7 @@
 <div>
   <h2>Manage Books</h2>
   <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered text-center align-middle">
       <thead>
         <tr>
           <th>Cover</th>
@@ -81,12 +81,12 @@
 </div>
 
 <!-- Pagination Links -->
-<div class="pagination">
+<div class="pagination justify-content-center">
   <span class="step-links">
     {% if page_obj.has_previous %}
-    <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">first</a>
+    <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">first</a>
     <a
-      href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+      href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">previous</a>
     {% endif %}
 
     <span class="current">
@@ -94,8 +94,8 @@
     </span>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last</a>
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">last</a>
     {% endif %}
   </span>
 </div>

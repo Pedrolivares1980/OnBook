@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <p class="card-text">Author: {{ object.author }}</p>
                 <p class="card-text">Publisher: {{ object.publisher }}</p>
-                <p class="card-text">Publish Date: {{ object.publish_date }}</p>
+                <p class="card-text">Publish Date: {{ object.publish_date|date:"d/m/Y" }}</p>
                 <p class="card-text">Language: {{ object.language }}</p>
                 <p class="card-text">Category: {{ object.get_category_display }}</p>
                 <p class="card-text">Description: {{ object.description }}</p>
