@@ -83,6 +83,15 @@ class BookCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
     form_class = BookForm
     template_name = 'books/book_form.html'
     success_url = reverse_lazy('book_list')
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, 'Book added successfully.')
+        return response
+
+    def form_invalid(self, form):
+        # Imprime los errores de formulario para depuración
+        print(form.errors)
+        return super().form_invalid(form)
 
 class BookUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
     """View for updating a book."""
