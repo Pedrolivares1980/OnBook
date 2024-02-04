@@ -6,7 +6,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserProfileForm, UserForm
 from rent.models import Rental
 from django.db.models import Q
-from django.views.generic import DetailView
+from messaging.models import ChatMessage
 
 # User registration view
 def register(request):
@@ -38,6 +38,9 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
+    # Retrieving unreaded messages
+    unread_messages = ChatMessage.objects.filter(recipient=request.user, is_read=False)
+
     # Retrieving user's rental history
     current_rentals = Rental.objects.filter(user=request.user, actual_return_date__isnull=True)
     past_rentals = Rental.objects.filter(user=request.user, actual_return_date__isnull=False)
@@ -47,6 +50,7 @@ def profile(request):
         "p_form": p_form,
         "current_rentals": current_rentals,
         "past_rentals": past_rentals,
+        "unread_messages": unread_messages,
     }
 
     return render(request, "users/profile.html", context)

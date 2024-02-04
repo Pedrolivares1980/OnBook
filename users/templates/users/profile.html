@@ -15,94 +15,99 @@
             <p class="text-secondary">{{ user.email }}</p>
             <a href="{% url 'edit_profile' %}" class="btn btn-outline-info">Edit Profile</a>
           </div>
+          {% if user_has_unread_messages %}
+          <i class="bi bi-envelope-arrow-up-fill">&nbsp;</i>
+          <span class="badge badge-danger">You have new messages</span>
+          {% endif %}
         </div>
       </div>
     </div>
 
-<!-- Currently Rented Books -->
-<div class="col-md-8">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="text-center">Currently Rented Books</h3>
-    </div>
-    <div class="card-body">
-      <table class="table text-center">
-        <thead>
-          <tr class="align-middle">
-            <th>Cover</th>
-            <th>Book Name</th>
-            <th>Rented On</th>
-            <th>Return By</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for rental in current_rentals %}
-          <tr class="align-middle">
-            <td class="book-cover-container"> 
-              {% if rental.book.cover_image %}
-              <img src="{{ rental.book.cover_image.url }}" alt="{{ rental.book.name }}" class="book-cover">
-              {% else %}
-              <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image">
-              {% endif %}
-            </td>
-            <td>{{ rental.book.name }}</td>
-            <td>{{ rental.rental_date }}</td>
-            <td>{{ rental.return_date }}</td>
-            <td><a href="{% url 'return_book' rental.id %}" class="btn btn-sm btn-outline-secondary">Return Book</a></td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="5">No currently rented books.</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-<!-- Rented Books History -->
-<div class="col-12 mt-4">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="text-center">Rented Books History</h3>
-    </div>
-    <div class="card-body">
-      <table class="table text-center">
-        <thead>
-          <tr class="align-middle">
-            <th>Cover</th>
-            <th>Book Name</th>
-            <th>Rented On</th>
-            <th>Returned On</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for rental in past_rentals %}
-          <tr class="align-middle">
-            <td>
-              <div class="book-cover-container"> 
-                {% if rental.book.cover_image %}
+    <!-- Currently Rented Books -->
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Currently Rented Books</h3>
+        </div>
+        <div class="card-body">
+          <table class="table text-center">
+            <thead>
+              <tr class="align-middle">
+                <th>Cover</th>
+                <th>Book Name</th>
+                <th>Rented On</th>
+                <th>Return By</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for rental in current_rentals %}
+              <tr class="align-middle">
+                <td class="book-cover-container">
+                  {% if rental.book.cover_image %}
                   <img src="{{ rental.book.cover_image.url }}" alt="{{ rental.book.name }}" class="book-cover">
-                {% else %}
-                  <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="book-cover">
-                {% endif %}
-              </div>
-            </td>
-            <td>{{ rental.book.name }}</td>
-            <td>{{ rental.rental_date }}</td>
-            <td>{{ rental.actual_return_date }}</td>
-          </tr>
-          {% empty %}
-          <tr>
-            <td colspan="4">No past rentals.</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+                  {% else %}
+                  <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image">
+                  {% endif %}
+                </td>
+                <td>{{ rental.book.name }}</td>
+                <td>{{ rental.rental_date }}</td>
+                <td>{{ rental.return_date }}</td>
+                <td><a href="{% url 'return_book' rental.id %}" class="btn btn-sm btn-outline-secondary">Return Book</a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="5">No currently rented books.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-{% endblock content %}
+    <!-- Rented Books History -->
+    <div class="col-12 mt-4">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="text-center">Rented Books History</h3>
+        </div>
+        <div class="card-body">
+          <table class="table text-center">
+            <thead>
+              <tr class="align-middle">
+                <th>Cover</th>
+                <th>Book Name</th>
+                <th>Rented On</th>
+                <th>Returned On</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for rental in past_rentals %}
+              <tr class="align-middle">
+                <td>
+                  <div class="book-cover-container">
+                    {% if rental.book.cover_image %}
+                    <img src="{{ rental.book.cover_image.url }}" alt="{{ rental.book.name }}" class="book-cover">
+                    {% else %}
+                    <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="book-cover">
+                    {% endif %}
+                  </div>
+                </td>
+                <td>{{ rental.book.name }}</td>
+                <td>{{ rental.rental_date }}</td>
+                <td>{{ rental.actual_return_date }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td colspan="4">No past rentals.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {% endblock content %}
