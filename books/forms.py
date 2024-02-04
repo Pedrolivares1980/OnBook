@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import DateInput
 from .models import Book
 from django.utils import timezone
 from PIL import Image
@@ -11,6 +12,20 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['name', 'author', 'publisher', 'publish_date', 'language', 'cover_image', 'category', 'description', 'is_available']
+        widgets = {
+            'publish_date': DateInput(attrs={'type': 'date'}, format='%d/%m/%Y'),
+        }
+        help_texts = {
+            'name': 'Enter the full title of the book.',
+            'author': 'Name of the author or authors.',
+            'publisher': 'Enter the name of the publisher company',
+            'category': 'Select the most fitting category for the book.',
+            'description': 'Enter  a brief description about this book.',
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(BookForm, self).__init__(*args, **kwargs)
+        self.fields['publish_date'].input_formats = ('%d/%m/%Y',)
 
     def clean_publish_date(self):
         """Ensure publish date is not in the future."""
