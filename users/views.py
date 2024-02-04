@@ -39,7 +39,7 @@ def profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     # Retrieving unreaded messages
-    unread_messages = ChatMessage.objects.filter(recipient=request.user, is_read=False)
+    unread_messages = ChatMessage.objects.filter(receiver=request.user, is_read=False)
 
     # Retrieving user's rental history
     current_rentals = Rental.objects.filter(user=request.user, actual_return_date__isnull=True)
