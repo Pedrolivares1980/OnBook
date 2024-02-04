@@ -41,7 +41,7 @@
   <select name="category" id="id_category" class="form-control">
     <option value="">--Select the most fitting category for the book--</option>
     {% for value, display in form.fields.category.choices %}
-    <option value="{{ value }}" {% if form.category.value==value %} selected {% endif %}>{{ display }}</option>
+    <option value="{{ value }}" {% if form.category.value == value %}selected{% endif %}>{{ display }}</option>
     {% endfor %}
   </select>
 
