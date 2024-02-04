@@ -231,20 +231,7 @@ main{
   height: 65px;
 }
 
-.carousel-container {
-  display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  width: 800px; /* Tamaño del carrusel deseado */
-  height: 600px;
-  overflow: hidden; /* Oculta partes de las imágenes que exceden el tamaño */
-}
 
-.carousel-image {
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto; /* Añade márgenes para centrar las imágenes */
-}
 
 
 /* Estilos para pantallas más grandes */

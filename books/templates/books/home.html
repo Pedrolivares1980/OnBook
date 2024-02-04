@@ -12,10 +12,10 @@
       <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           {% for book in random_books %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %} carousel-container">
+          <div class="carousel-item {% if forloop.first %}active{% endif %} ">
             <!-- Check if book has a cover_image -->
             {% if book.cover_image %}
-            <img src="{{ book.cover_image.url }}" class="d-block carousel-image" alt="{{ book.title }}">
+            <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }}">
             {% else %}
             <!-- Display a default image or leave this space blank if no cover image exists -->
             <img src="{% static 'default_cover_image_path.jpg' %}" class="d-block w-100" alt="Default Image">
