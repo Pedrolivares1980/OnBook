@@ -3,19 +3,19 @@
 <div>
   <form method="GET" action="{% url 'admin_users' %}">
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Buscar usuario" name="q" value="{{ request.GET.q }}">
-    <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+    <input type="text" class="form-control" placeholder="Search User" name="q" value="{{ request.GET.q }}">
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
   </div>
   </form>
-  <a href="{% url 'admin_users' %}" class="btn btn-outline-info mb-3">Limpiar Búsqueda</a>
+  <a href="{% url 'admin_users' %}" class="btn btn-outline-info mb-3">Clear Search</a>
 </div>
-<h2>Lista de Usuarios</h2>
+<h2>User List</h2>
 <table class="table">
   <thead>
     <tr>
-      <th>Usuario</th>
+      <th>User</th>
       <th>Email</th>
-      <th>Acciones</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -24,9 +24,9 @@
       <td>{{ user.username }}</td>
       <td>{{ user.email }}</td>
       <td>
-        <a href="{% url 'user_detail' user.id %}" class="btn btn-info">Detalles</a>
-        <a href="{% url 'edit_user' user.id %}" class="btn btn-primary">Editar</a>
-        <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'user_detail' user.id %}" class="btn btn-info">Details</a>
+        <a href="{% url 'edit_user' user.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete</a>
       </td>
     </tr>
     {% endfor %}

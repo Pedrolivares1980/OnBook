@@ -118,11 +118,20 @@ def edit_user(request, user_id):
         profile_form = UserProfileForm(instance=user.profile)
     return render(request, 'users/edit_user.html', {'user_form': user_form, 'profile_form': profile_form, 'user': user})
 
-# View for deleting a user by admin
-@staff_member_required
+# View for deleting a user by admin or user
+@login_required
 def delete_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
-    if request.method == "POST":
-        user.delete()
-        return redirect('admin_users')
-    return render(request, 'users/delete_user.html', {'user': user})
+    
+    if request.user.is_staff or request.user == user:
+        if request.method == "POST":
+            user.delete()
+            messages.success(request, 'The user account has been successfully deleted.')
+            if request.user.is_staff:
+                return redirect('admin_users')
+            else:
+                return redirect('home')
+        return render(request, 'users/delete_user.html', {'user': user})
+    else:
+        messages.error(request, 'You do not have permission to delete this user.')
+        return redirect('home')

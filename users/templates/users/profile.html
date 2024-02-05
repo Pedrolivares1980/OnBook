@@ -14,10 +14,13 @@
             <h2 class="account-heading">{{ user.username }}</h2>
             <p class="text-secondary">{{ user.email }}</p>
             <a href="{% url 'edit_profile' %}" class="btn btn-outline-info">Edit Profile</a>
+            <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete Account</a>
           </div>
-          {% if user_has_unread_messages %}
-          <i class="bi bi-envelope-arrow-up-fill">&nbsp;</i>
-          <span class="badge badge-danger">You have new messages</span>
+          {% if unread_messages_count > 0 %}
+          <a href="{% url 'messaging:inbox' %}">
+            <i class="bi bi-envelope-arrow-up-fill"></i>
+            <span>{{ unread_messages_count }}</span>
+          </a>
           {% endif %}
         </div>
       </div>

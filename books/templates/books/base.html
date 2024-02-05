@@ -48,10 +48,11 @@
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
             <a class="nav-item nav-link" href="{% url 'inbox' %}">Inbox</a>
-            {% with unread_messages=user.profile.unread_messages %}
-            {% if unread_messages %}
-            <a class="nav-item nav-link" href="{% url 'inbox' %}">
-              <i class="bi bi-envelope-arrow-up-fill"></i></a>
+            {% if unread_messages_count > 0 %}
+            <a href="{% url 'messaging:inbox' %}">
+              <i class="bi bi-envelope-arrow-up-fill"></i>
+              <span>{{ unread_messages_count }}</span>
+            </a>
             {% endif %}
             {% endwith %}
             <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>

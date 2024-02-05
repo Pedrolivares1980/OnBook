@@ -20,7 +20,13 @@ def inbox(request):
         Q(received_messages__sender=request.user)
     ).distinct().exclude(id=request.user.id)
 
-    # Get all unread messages for the current user
+    # Get senders of unread messages
+    unread_senders = ChatMessage.objects.filter(receiver=request.user, is_read=False).values_list('sender', flat=True).distinct()
+
+    if len(unread_senders) == 1:
+        # If there's exactly one sender of unread messages, redirect to that conversation
+        return redirect('conversation', user_id=unread_senders[0])
+    
     unread_messages = ChatMessage.objects.filter(receiver=request.user, is_read=False)
 
     return render(request, 'messaging/inbox.html', {
