@@ -54,7 +54,6 @@
               <span>{{ unread_messages_count }}</span>
             </a>
             {% endif %}
-            {% endwith %}
             <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
             {% else %}
             <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
