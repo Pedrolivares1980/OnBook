@@ -6,13 +6,14 @@
   <h1>Welcome to OnBook</h1>
   <p>Explore our collection of books and manage your rentals.</p>
 </div>
-<div class="container bg-body-secondary mt-4">
-    <div class="col-lg-4 p-1">
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-lg-6">
       <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           {% for book in random_books %}
           <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ book.cover_image.url }}" class="d-block w-100" alt="{{ book.title }}">
+            <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }}">
           </div>
           {% endfor %}
         </div>
@@ -27,16 +28,21 @@
         </a>
       </div>
     </div>
+    <div class="col-lg-6">
+      <div class="mt-md-4">
+        <h2 class="text-center">Discover Our Collection</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+      </div>
+      <div class="text-center">
+        <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="col-lg-8">
-  <div class="container">
-    <div class="text-center">
-      <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
-    </div>
-    <div class="mt-md-4">
-      <h2 class="text-center">Discover Our Collection</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-    </div>
+<div class="container mt-4">
+  <div class="col-lg-12">
+    <h2 class="text-center">Discover Our Universe</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, ex, ullam voluptas mollitia tempore, quasi magnam eos provident officiis dolor quisquam debitis aut adipisci? Sit mollitia sint eum laboriosam eius?</p>
   </div>
 </div>
 {% endblock %}

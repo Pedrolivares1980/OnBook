@@ -2,7 +2,7 @@ from django import forms
 from django.forms import DateInput
 from .models import Book
 from django.utils import timezone
-from PIL import Image, UnidentifiedImageError
+from PIL import Image, UnidentifiedImageError, ImageOps
 from io import BytesIO
 from django.core.files import File
 from django.core.exceptions import ValidationError
@@ -63,13 +63,20 @@ class BookForm(forms.ModelForm):
                     img = Image.open(cover_image)
                     # Correct the orientation of the image based on EXIF data
                     img = self.correct_image_orientation(img)
+
+                    # Ensure the image has a minimum size (600x600 in this case)
+                    min_width = 600
+                    min_height = 600
+                    img = ImageOps.pad(img, (min_width, min_height), color="black")
+
                     # Resize the image if necessary
-                    img = self.resize_image(img, max_size=(600, 600))
+                    img.thumbnail((600, 600), Image.ANTIALIAS)
 
                     # Save the processed image to a BytesIO buffer
                     in_mem_file = BytesIO()
                     img.save(in_mem_file, format="JPEG")
                     in_mem_file.seek(0)
+
                     # Save the image to the model's cover_image field
                     book.cover_image.save(
                         cover_image.name, content=File(in_mem_file), save=False

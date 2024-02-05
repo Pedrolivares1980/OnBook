@@ -157,6 +157,31 @@ main{
     font-size: 2.5rem;
   }
 
+  /* Carrousel */
+
+  /* Estilo personalizado para el contenedor del carrousel */
+  #bookCarousel {
+    min-height: 600px; /* Altura mínima de 600px */
+    background-color: #f8f9fa; /* Color de fondo gris */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Evitar que las imágenes se desborden del contenedor */
+  }
+
+  /* Estilo para las imágenes del carrousel */
+  .carousel-inner img {
+    max-height: 100%; /* Ajustar la imagen al 100% de la altura del contenedor */
+    width: auto; /* Mantener el ancho original de la imagen */
+    max-width: 100%; /* Ajustar la imagen al 100% del ancho del contenedor */
+  }
+
+  /* Estilo para los controles del carrousel */
+  .carousel-control-prev,
+  .carousel-control-next {
+    top: 50%; /* Alinear verticalmente los controles al centro */
+    transform: translateY(-50%);
+  }
 /*--------------------------------------------- Messagin app----------------------------------- */
 
   .messages {
