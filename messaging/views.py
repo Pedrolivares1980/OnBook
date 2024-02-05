@@ -58,6 +58,9 @@ def conversation(request, user_id):
         (Q(sender=request.user) & Q(receiver=other_user)) | 
         (Q(sender=other_user) & Q(receiver=request.user))
     ).order_by('timestamp')
+
+    chat_messages.filter(receiver=request.user, is_read=False).update(is_read=True)
+
     return render(request, 'messaging/conversation.html', {'chat_messages': chat_messages, 'other_user': other_user})
 
 @login_required
