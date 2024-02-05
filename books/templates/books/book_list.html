@@ -9,7 +9,7 @@
   <select name="author">
     <option value="">--Filter by Author--</option>
     {% for author in authors %}
-    <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
+    <option value="{{ author }}" {% if request.GET.author==author %}selected{% endif %}>{{ author }}</option>
     {% endfor %}
   </select>
 
@@ -17,7 +17,7 @@
   <select name="publisher">
     <option value="">--Filter by Publisher--</option>
     {% for publisher in publishers %}
-    <option value="{{ publisher }}" {% if request.GET.publisher == publisher %}selected{% endif %}>{{ publisher }}
+    <option value="{{ publisher }}" {% if request.GET.publisher==publisher %}selected{% endif %}>{{ publisher }}
     </option>
     {% endfor %}
   </select>
@@ -26,7 +26,7 @@
   <select name="category">
     <option value="">--Select Category--</option>
     {% for category, category_display in categories.items %}
-    <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category_display }}
+    <option value="{{ category }}" {% if request.GET.category==category %}selected{% endif %}>{{ category_display }}
     </option>
     {% endfor %}
   </select>
@@ -35,7 +35,7 @@
 </form>
 
 <!-- Book List Table -->
-<div>
+<!-- <div>
   <h2>Manage Books</h2>
   <div class="table-responsive">
     <table class="table table-bordered text-center align-middle">
@@ -54,7 +54,8 @@
         <tr>
           <td class="align-middle">
             {% if book.cover_image %}
-            <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid" style="max-height: 100px; max-width: 100px;">
+            <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid"
+              style="max-height: 100px; max-width: 100px;">
             {% else %}
             <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
             {% endif %}
@@ -76,15 +77,34 @@
     </table>
   </div>
 
+</div> -->
+{% for book in books %}
+<div class="card">
+  <div class="face front">
+    {% if book.cover_image %}
+    <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid">
+    {% else %}
+    <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
+    {% endif %}
+  </div>
+  <div class="face back">
+    <h3>{{ book.name }}</h3>
+    <h4>{{ book.author }}</h4>
+    <div class="link">
+      <a href="{% url 'book_detail' book.id %}" class="btn btn-secondary">View Book</a>
+    </div>
+  </div>
 </div>
+
+{% endfor %}
 
 <!-- Pagination Links -->
 <div class="pagination justify-content-center">
   <span class="step-links">
     {% if page_obj.has_previous %}
     <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">first</a>
-    <a
-      href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">previous</a>
+    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      class="btn btn-primary">previous</a>
     {% endif %}
 
     <span class="current">
@@ -92,8 +112,10 @@
     </span>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">last</a>
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      class="btn btn-primary">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      class="btn btn-primary">last</a>
     {% endif %}
   </span>
 </div>
