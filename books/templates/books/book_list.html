@@ -9,7 +9,7 @@
   <select name="author">
     <option value="">--Filter by Author--</option>
     {% for author in authors %}
-    <option value="{{ author }}" {% if request.GET.author==author %}selected{% endif %}>{{ author }}</option>
+    <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
     {% endfor %}
   </select>
 
@@ -17,7 +17,7 @@
   <select name="publisher">
     <option value="">--Filter by Publisher--</option>
     {% for publisher in publishers %}
-    <option value="{{ publisher }}" {% if request.GET.publisher==publisher %}selected{% endif %}>{{ publisher }}
+    <option value="{{ publisher }}" {% if request.GET.publisher == publisher %}selected{% endif %}>{{ publisher }}
     </option>
     {% endfor %}
   </select>
@@ -26,7 +26,7 @@
   <select name="category">
     <option value="">--Select Category--</option>
     {% for category, category_display in categories.items %}
-    <option value="{{ category }}" {% if request.GET.category==category %}selected{% endif %}>{{ category_display }}
+    <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category_display }}
     </option>
     {% endfor %}
   </select>
