@@ -1,50 +1,65 @@
 {% extends 'books/base.html' %}
 {% load static %}
 {% block content %}
-<h1>Book Administration</h1>
+<div class="container mt-4 border border-3 border-black rounded-4 bg-body-secondary p-3">
+  <h1 class="text-center">Book Administration</h1>
 
 <!-- Search and Filter Form -->
-<form method="get" action="{% url 'book_admin' %}">
-  <input type="text" name="q" placeholder="Search for books..." value="{{ request.GET.q }}">
-
-  <!-- Dropdown for Authors -->
-  <select name="author">
-    <option value="">--Filter by Author--</option>
-    {% for author in authors %}
-    <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
-    {% endfor %}
-  </select>
-
-  <!-- Dropdown for Publishers -->
-  <select name="publisher">
-    <option value="">--Filter by Publisher--</option>
-    {% for publisher in publishers %}
-    <option value="{{ publisher }}" {% if request.GET.publisher == publisher %}selected{% endif %}>{{ publisher }}</option>
-    {% endfor %}
-  </select>
-
-  <!-- Dropdown for Categories -->
-  <select name="category">
-    <option value="">--Filter by Category--</option>
-    {% for category, category_display in categories.items %}
-    <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category_display }}</option>
-    {% endfor %}
-  </select>
-
-  <button type="submit" class="btn btn-primary">Search</button>
-</form>
+<div class="container border border-black">
+  <div class="row w-100 p-2 pt-3">
+    <h3 class="text-center">Search and Filter</h3>
+    <form method="get" action="{% url 'book_list' %}" class="d-flex flex-column justify-content-center flex-lg-row flex-lg-wrap">
+      <div class="mb-3">
+        <input type="text" name="q" placeholder="Search for books..." value="{{ request.GET.q }}" class="form-control">
+      </div>
+      <!-- Dropdown for Authors -->
+      <div class="mb-3">
+        <select name="author" class="form-select">
+          <option value="">--Filter by Author--</option>
+          {% for author in authors %}
+          <option value="{{ author }}" {% if request.GET.author == author %}selected{% endif %}>{{ author }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- Dropdown for Publishers -->
+      <div class="mb-3">
+        <select name="publisher" class="form-select">
+          <option value="">--Filter by Publisher--</option>
+          {% for publisher in publishers %}
+          <option value="{{ publisher }}" {% if request.GET.publisher == publisher %}selected{% endif %}>{{ publisher }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <!-- Dropdown for Categories -->
+      <div class="mb-3">
+        <select name="category" class="form-select">
+          <option value="">--Select Category--</option>
+          {% for category, category_display in categories.items %}
+          <option value="{{ category }}" {% if request.GET.category == category %}selected{% endif %}>{{ category_display }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="mb-3 col-12 text-center">
+        <button type="submit" class="btn btn-primary btn-block m-2">Search</button>
+        <a href="{% url 'book_list' %}" class="btn btn-success btn-block m-2">Clear</a>
+      </div>
+    </form>
+  </div>
+</div>
 
 
 
 <!-- Add New Book Button -->
-<div>
+<div class="text-center my-3">
   <a href="{% url 'book_add' %}" class="btn btn-success">Add New Book</a>
 </div>
 
 <!-- Book List Table -->
 <div>
-  <h2>Manage Books</h2>
-  <div class="table-responsive">
+  <h2 class="text-center">Manage Books</h2>
+  <div class="table-responsive border border-1 border-black  bg-body-secondary text-center">
     <table class="table">
       <thead>
         <tr>
@@ -72,8 +87,8 @@
           <td>{{ book.publisher }}</td>
           <td>{{ book.category }}</td>
           <td>
-            <a href="{% url 'book_update' book.id %}" class="btn btn-secondary">Edit</a>
-            <a href="{% url 'book_delete' book.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'book_update' book.id %}" class="btn btn-secondary m-2 w-75">Edit</a>
+            <a href="{% url 'book_delete' book.id %}" class="btn btn-danger m-2 w-75">Delete</a>
           </td>
         </tr>
         {% empty %}
@@ -86,23 +101,26 @@
   </div>
 </div>
 
-<!-- Pagination Controls -->
-<div class="pagination">
+<!-- Pagination Links -->
+<div class="pagination justify-content-center mt-3">
   <span class="step-links">
     {% if page_obj.has_previous %}
-    <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">first</a>
-    <a
-      href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+    <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">first</a>
+    <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      class="btn btn-primary">previous</a>
     {% endif %}
 
-    <span class="current">
-      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    <span class="current mx-3">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
     </span>
 
     {% if page_obj.has_next %}
-    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
-    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">last</a>
+    <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      class="btn btn-primary ">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+      class="btn btn-primary ">last</a>
     {% endif %}
   </span>
+</div>
 </div>
 {% endblock %}

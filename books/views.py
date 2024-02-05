@@ -39,7 +39,7 @@ class BookListView(BookMixin, ListView):
     model = Book
     template_name = 'books/book_list.html'
     context_object_name = 'books'
-    paginate_by = 10
+    paginate_by = 9
 
     def get_queryset(self):
         """Modify the queryset based on search and filter criteria."""

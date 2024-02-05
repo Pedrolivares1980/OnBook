@@ -27,37 +27,37 @@
 
 <body>
   <header class="site-header">
-    <nav class="navbar navbar-expand-md bg-success fixed-top">
-      <div class="container">
-        <a class="navbar-brand mr-4" href="{% url 'books_home' %}">OnBook</a>
+    <nav class="navbar navbar-expand-md bg-black fixed-top ">
+      <div class="container ">
+        <a class="navbar-brand mr-4  text-white" href="{% url 'books_home' %}">OnBook</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
           aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarToggle">
           <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="{% url 'books_about' %}">About</a>
-            <a class="nav-item nav-link" href="{% url 'blog-home' %}">Blog</a>
+            <a class="nav-item nav-link text-white" href="{% url 'books_about' %}">About</a>
+            <a class="nav-item nav-link text-white" href="{% url 'blog-home' %}">Blog</a>
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav ms-auto">
             {% if user.is_authenticated and user.is_staff %}
-            <a class="nav-item nav-link" href="{% url 'book_admin' %}">Admin Books</a>
-            <a class="nav-item nav-link" href="{% url 'admin_users' %}">Admin Users</a>
+            <a class="nav-item nav-link text-white" href="{% url 'book_admin' %}">Admin Books</a>
+            <a class="nav-item nav-link text-white" href="{% url 'admin_users' %}">Admin Users</a>
             {% endif %}
             {% if user.is_authenticated %}
-            <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-            <a class="nav-item nav-link" href="{% url 'inbox' %}">Inbox</a>
+            <a class="nav-item nav-link text-white" href="{% url 'profile' %}">Profile</a>
+            <a class="nav-item nav-link text-white" href="{% url 'inbox' %}">Inbox</a>
             {% if unread_messages_count > 0 %}
-            <a href="{% url 'inbox' %}">
+            <a href="{% url 'inbox' %}" class="text-white">
               <i class="bi bi-envelope-arrow-up-fill"></i>
               <span>{{ unread_messages_count }}</span>
             </a>
             {% endif %}
-            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+            <a class="nav-item nav-link text-white" href="{% url 'logout' %}">Logout</a>
             {% else %}
-            <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-            <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+            <a class="nav-item nav-link text-white" href="{% url 'login' %}">Login</a>
+            <a class="nav-item nav-link text-white" href="{% url 'register' %}">Register</a>
             {% endif %}
           </div>
         </div>
@@ -82,8 +82,8 @@
 
   </main>
 
-  <footer class="footer mt-auto py-3 text-center">
-    <div class="container">
+  <footer class="footer mt-auto py-3 text-center bg-black">
+    <div class="container text-white">
       <div class="row">
         <!-- Slogan -->
         <div class="col-md-4">

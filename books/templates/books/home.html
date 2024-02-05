@@ -1,47 +1,49 @@
 {% extends 'books/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container text-center">
-  <h1>Welcome to OnBook</h1>
-  <p>Explore our collection of books and manage your rentals.</p>
-</div>
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-lg-6">
-      <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          {% for book in random_books %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }}">
+<div class="home_container mt-4 bg-body-secondary">
+  <div class="container text-center mt-3 p-2">
+    <h1>Welcome to OnBook</h1>
+    <p>Explore our collection of books and manage your rentals.</p>
+  </div>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-lg-6">
+        <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% for book in random_books %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }}">
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+          <!-- Carousel controls -->
+          <a class="carousel-control-prev" href="#bookCarousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#bookCarousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
         </div>
-        <!-- Carousel controls -->
-        <a class="carousel-control-prev" href="#bookCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#bookCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </a>
       </div>
-    </div>
-    <div class="col-lg-6">
-      <div class="mt-md-4">
-        <h2 class="text-center">Discover Our Collection</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-      </div>
-      <div class="text-center">
-        <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
+      <div class="col-lg-6">
+        <div class="mt-md-4 mt-3">
+          <h2 class="text-center">Discover Our Collection</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+        <div class="text-center">
+          <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="container mt-4">
-  <div class="col-lg-12">
-    <h2 class="text-center">Discover Our Universe</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, ex, ullam voluptas mollitia tempore, quasi magnam eos provident officiis dolor quisquam debitis aut adipisci? Sit mollitia sint eum laboriosam eius?</p>
+  <div class="container mt-4 p-3">
+    <div class="col-lg-12 text-center">
+      <h2 class="text-center my-3">Discover Our Universe</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, ex, ullam voluptas mollitia tempore, quasi magnam eos provident officiis dolor quisquam debitis aut adipisci? Sit mollitia sint eum laboriosam eius?</p>
+    </div>
   </div>
 </div>
 {% endblock %}
