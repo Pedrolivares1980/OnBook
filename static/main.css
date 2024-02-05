@@ -138,7 +138,7 @@ main{
 
 /* Estilos personalizados para el carrusel */
 #bookCarousel {
-  background-color: #f0f0f0; /* Fondo gris para el contenedor */
+  background-color: black; /* Fondo gris para el contenedor */
 }
 
 #bookCarousel .carousel-inner {

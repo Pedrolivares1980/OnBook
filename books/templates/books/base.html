@@ -49,7 +49,7 @@
             <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
             <a class="nav-item nav-link" href="{% url 'inbox' %}">Inbox</a>
             {% if unread_messages_count > 0 %}
-            <a href="{% url 'messaging:inbox' %}">
+            <a href="{% url 'inbox' %}">
               <i class="bi bi-envelope-arrow-up-fill"></i>
               <span>{{ unread_messages_count }}</span>
             </a>
