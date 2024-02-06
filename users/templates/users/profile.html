@@ -16,12 +16,15 @@
             <a href="{% url 'edit_profile' %}" class="btn btn-info">Edit Profile</a>
             <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete Account</a>
           </div>
-          {% if unread_messages_count > 0 %}
-          <a href="{% url 'inbox' %}">
-            <i class="bi bi-envelope-arrow-up-fill"></i>
-            <span>{{ unread_messages_count }}</span>
-          </a>
-          {% endif %}
+          <div class="mt-2">
+            <a class="btn btn-success" href="{% url 'post-create' %}">New Post</a>
+            {% if unread_messages_count > 0 %}
+            <a href="{% url 'inbox' %}">
+              <i class="bi bi-envelope-arrow-up-fill"></i>
+              <span>{{ unread_messages_count }}</span>
+            </a>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
