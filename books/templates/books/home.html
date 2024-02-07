@@ -1,7 +1,7 @@
 {% extends 'books/base.html' %}
 {% load static %}
 {% block content %}
-<div class="home_container mt-4 bg-body-secondary">
+<div class="home-container mt-4 rounded-3">
   <div class="container text-center mt-3 p-2">
     <h1>Welcome to OnBook</h1>
     <p>Explore our collection of books and manage your rentals.</p>
@@ -9,11 +9,11 @@
   <div class="container mt-4">
     <div class="row">
       <div class="col-lg-6">
-        <div id="bookCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="bookCarousel" class="carousel slide rounded-3" data-bs-ride="carousel">
           <div class="carousel-inner">
             {% for book in random_books %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-              <img src="{{ book.cover_image.url }}" class="d-block" alt="{{ book.title }}">
+              <img src="{{ book.cover_image.url }}" class="d-block rounded-3" alt="{{ book.title }}">
             </div>
             {% endfor %}
           </div>
@@ -32,7 +32,7 @@
         <div class="mt-md-4 mt-3">
           <h2 class="text-center">Discover Our Collection</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-          <img src="{% static 'images/assets/girl-3528292_640.webp' %}" class="img-thumbnail" alt="Woman reading on a river side">
+          <img src="{% static 'images/assets/girl-3528292_640.webp' %}" class="img-thumbnail rounded-3 " alt="Woman reading on a river side">
         </div>
         <div class="text-center">
           <a href="{% url 'book_list' %}" class="btn btn-primary mx-auto my-3">View All Books</a>
@@ -44,7 +44,7 @@
     <div class="col-lg-12 text-center">
       <h2 class="text-center my-3">Discover Our Universe</h2>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, ex, ullam voluptas mollitia tempore, quasi magnam eos provident officiis dolor quisquam debitis aut adipisci? Sit mollitia sint eum laboriosam eius?</p>
-      <img src="{% static 'images/assets/reading-5069826_640.webp' %}" class="img-thumbnail" alt="Child reading on the bed">
+      <img src="{% static 'images/assets/reading-5069826_640.webp' %}" class="img-thumbnail rounded-3 " alt="Child reading on the bed">
     </div>
   </div>
 </div>

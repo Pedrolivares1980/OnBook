@@ -6,11 +6,11 @@
   <div class="row w-100 p-2 pt-3">
     <h3 class="text-center">Search and Filter</h3>
     <form method="get" action="{% url 'book_list' %}" class="d-flex flex-column justify-content-center flex-lg-row flex-lg-wrap">
-      <div class="mb-3">
+      <div class="mb-3 ">
         <input type="text" name="q" placeholder="Search for books..." value="{{ request.GET.q }}" class="form-control">
       </div>
       <!-- Dropdown for Authors -->
-      <div class="mb-3">
+      <div class="mb-3 ms-1">
         <select name="author" class="form-select">
           <option value="">--Filter by Author--</option>
           {% for author in authors %}
@@ -19,7 +19,7 @@
         </select>
       </div>
       <!-- Dropdown for Publishers -->
-      <div class="mb-3">
+      <div class="mb-3 ms-1">
         <select name="publisher" class="form-select">
           <option value="">--Filter by Publisher--</option>
           {% for publisher in publishers %}
@@ -29,7 +29,7 @@
         </select>
       </div>
       <!-- Dropdown for Categories -->
-      <div class="mb-3">
+      <div class="mb-3 ms-1">
         <select name="category" class="form-select">
           <option value="">--Select Category--</option>
           {% for category, category_display in categories.items %}
@@ -61,7 +61,7 @@
         <h3>{{ book.name }}</h3>
         <h4>{{ book.author }}</h4>
         <div class="link">
-          <a href="{% url 'book_detail' book.id %}" class="btn btn-secondary">View Book</a>
+          <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">View Book</a>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
   {% endfor %}
 </div>
 <!-- Pagination Links -->
-<div class="pagination justify-content-center mt-3">
+<div class="pagination justify-content-center mt-3 mb-2">
   <span class="step-links">
     {% if page_obj.has_previous %}
     <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="btn btn-primary">first</a>
