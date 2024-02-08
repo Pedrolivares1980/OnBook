@@ -21,7 +21,7 @@
                 <p class="card-text">Language: {{ object.language }}</p>
                 <p class="card-text">Category: {{ object.get_category_display }}</p>
                 <p class="card-text">Description: {{ object.description }}</p>
-                {% if book.is_available %}
+                {% if book.is_available and user.is_authenticated%}
                 <form method="post" action="{% url 'rent_book' book.id %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-primary">Rent Book</button>
