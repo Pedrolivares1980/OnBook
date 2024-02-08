@@ -77,8 +77,11 @@ main{
 
 /* Navbar */
 
+
+
 .navbar-nav .nav-link,
-.navbar .dropdown-item{
+.navbar .dropdown-item
+{
   transition: all .6s;
 }
 
@@ -93,6 +96,8 @@ main{
 }
 
 
+/* ------------------Blog----------------------------- */
+
   /* Containers */
   .content-section {
     background: var(--container-light);
@@ -100,7 +105,7 @@ main{
     border: 2px solid var(--border);
     border-radius: 10px;
     margin-bottom: 20px;
-    color:var(--text-color)
+    color:var(--text-color);
   }
   
   .article-title {
@@ -149,6 +154,27 @@ main{
   .account-heading {
     font-size: 2.5rem;
   }
+
+  .custom-comment, .reply {
+    background-color: rgba(0,0,0,0.1); 
+    padding: 1rem;
+    border: .1rem solid black;
+    border-radius: .315rem;
+    margin-bottom: .625rem;
+}
+
+.reply {
+    background-color:  rgba(0,0,0,0.3);
+    padding: 1rem;
+    border-radius: .315rem;
+    margin-bottom: .625rem;
+    margin-left: 1.3rem;
+}
+
+.comment-actions a {
+  margin-right: 5px;
+}
+
 
 /* About */
 

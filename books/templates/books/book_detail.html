@@ -1,43 +1,50 @@
 {% extends 'books/base.html' %}
 {% load static %}
 {% block content %}
-<div class="card">
-    <div class="card-header">
-        <h2 class="card-title">{{ object.name }}</h2>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-4">
-                {% if object.cover_image %}
-                <img src="{{ object.cover_image.url }}" alt="{{ object.name }}" class="img-fluid">
-                {% else %}
-                <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
-                {% endif %}
-            </div>
-            <div class="col-md-8">
-                <p class="card-text">Author: {{ object.author }}</p>
-                <p class="card-text">Publisher: {{ object.publisher }}</p>
-                <p class="card-text">Publish Date: {{ object.publish_date|date:"d/m/Y" }}</p>
-                <p class="card-text">Language: {{ object.language }}</p>
-                <p class="card-text">Category: {{ object.get_category_display }}</p>
-                <p class="card-text">Description: {{ object.description }}</p>
-                {% if book.is_available and user.is_authenticated%}
-                <form method="post" action="{% url 'rent_book' book.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary">Rent Book</button>
-                </form>
-                {% else %}
-                <a href="{% url 'book_list' %}" class="btn btn-info">This book is currently not available</a>
-                {% endif %}
-                {% if user.is_authenticated and user.is_staff %}
-                <a href="{% url 'book_update' object.id %}" class="btn btn-secondary">Edit</a>
-                <a href="{% url 'book_delete' object.id %}" class="btn btn-danger">Delete</a>
-                {% endif %}
-            </div>
+<div class="card mb-2">
+  <div class="card-header">
+    <h2 class="card-title">{{ object.name }}</h2>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        {% if object.cover_image %}
+        <img src="{{ object.cover_image.url }}" alt="{{ object.name }}" class="img-fluid">
+        {% else %}
+        <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+        <p class="card-text">Author: {{ object.author }}</p>
+        <p class="card-text">Publisher: {{ object.publisher }}</p>
+        <p class="card-text">Publish Date: {{ object.publish_date|date:"d/m/Y" }}</p>
+        <p class="card-text">Language: {{ object.language }}</p>
+        <p class="card-text">Category: {{ object.get_category_display }}</p>
+        <p class="card-text">Description: {{ object.description }}</p>
+        <div class="d-flex flex-wrap align-items-center">
+          {% if user.is_authenticated %}
+          {% if book.is_available %}
+          <form method="post" action="{% url 'rent_book' book.id %}" class="me-2 mb-2 mb-lg-0">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Rent Book</button>
+          </form>
+          {% else %}
+          <a href="#" class="btn btn-info me-2 mb-2 mb-lg-0">This book is currently not available</a>
+          {% endif %}
+          {% else %}
+          <a href="{% url 'login' %}" class="btn btn-info me-2 mb-2 mb-lg-0">You need to login to Rent a Book</a>
+          {% endif %}
+
+          {% if user.is_authenticated and user.is_staff %}
+          <a href="{% url 'book_update' book.id %}" class="btn btn-secondary me-2 mb-2 mb-lg-0">Edit</a>
+          <a href="{% url 'book_delete' book.id %}" class="btn btn-danger mb-2 mb-lg-0">Delete</a>
+          {% endif %}
         </div>
+      </div>
     </div>
-    <div class="card-footer text-muted">
-        <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Back</button>
-    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Back</button>
+  </div>
 </div>
 {% endblock %}

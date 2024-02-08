@@ -29,8 +29,8 @@
   <header class="site-header">
     <nav class="navbar navbar-expand-md bg-primary fixed-top ">
       <div class="container-fluid text-white">
-        <a class="navbar-brand mx-5 text-danger fs-1 fw-bolder " href="{% url 'books_home' %}">OnBook</a>
-        <button class="navbar-toggler bg-danger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+        <a class="navbar-brand mx-5  logo " href="{% url 'books_home' %}">OnBook</a>
+        <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
           aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,25 +40,6 @@
             <a class="nav-item nav-link " href="{% url 'books_about' %}">About</a>
             <a class="nav-item nav-link " href="{% url 'blog-home' %}">Blog</a>
           </div>
-          <!-- <div class="navbar-nav ms-auto ">
-            {% if user.is_authenticated and user.is_staff %}
-            <a class="nav-item nav-link " href="{% url 'book_admin' %}">Admin Books</a>
-            <a class="nav-item nav-link " href="{% url 'admin_users' %}">Admin Users</a>
-            {% endif %}
-            {% if user.is_authenticated %}
-            <a class="nav-item nav-link " href="{% url 'profile' %}">Profile</a>
-            <a class="nav-item nav-link " href="{% url 'inbox' %}">Inbox</a>
-            {% if unread_messages_count > 0 %}
-            <a href="{% url 'inbox' %}" class="text-danger m-2">
-              <i class="bi bi-envelope-arrow-up-fill"></i>
-              <span>{{ unread_messages_count }}</span>
-            </a>
-            {% endif %}
-            <a class="nav-item nav-link " href="{% url 'logout' %}">Logout</a>
-            {% else %}
-            <a class="nav-item nav-link " href="{% url 'login' %}">Login</a>
-            <a class="nav-item nav-link " href="{% url 'register' %}">Register</a>
-            {% endif %} -->
           <div class="navbar-nav ms-auto">
             <!-- Dropdown Menu -->
             {% if user.is_authenticated and user.is_staff %}
@@ -128,7 +109,7 @@
         <!-- SSNN -->
         <div class="col-md-4">
           <h4>Social Network</h4>
-          <a href="https://www.whatsapp.com/tuUsuario" class="text-decoration-none social_icon me-2 whatsapp_icon">
+          <a href="https://wa.me/353899895252?text=Hi,%20nice%20to%20meet%20you." class="text-decoration-none social_icon me-2 whatsapp_icon">
             <i class="bi-whatsapp"></i>
           </a>
           <a href="https://github.com/Pedrolivares1980?tab=repositories"

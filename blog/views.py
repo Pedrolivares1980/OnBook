@@ -148,30 +148,6 @@ class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy("post-detail", kwargs={"pk": self.object.post.pk})
 
-
-# class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-#     model = Comment
-#     template_name = "blog/comment_confirm_delete.html"
-
-#     def test_func(self):
-#         comment = self.get_object()
-#         return self.request.user == comment.author
-
-#     def get_success_url(self):
-#         return reverse_lazy("post-detail", kwargs={"pk": self.object.post.pk})
-
-#     def delete(self, request, *args, **kwargs):
-#         comment = self.get_object()
-#         self._recursive_delete(comment)
-#         return super(CommentDeleteView, self).delete(request, *args, **kwargs)
-
-#     def _recursive_delete(self, comment):
-#         """Recursively delete child comments."""
-#         for child_comment in comment.replies.all():
-#             self._recursive_delete(child_comment)
-#         comment.delete()
-
-
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
     template_name = "blog/comment_confirm_delete.html"

@@ -1,29 +1,25 @@
-{% extends "blog/base.html" %}
-{% block content %}
 {% for comment in comments %}
-<div class="card mb-2 comment">
-    <div class="card-body">
-        <div class="media">
+<div class="{% if comment.parent %}reply ms-4{% else %}custom-comment{% endif %}">
+    <div class="comment-body">
+        <div class="d-flex align-items-center">
             <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
-            <div class="media-body ml-2">
-                <h5 class="card-title">{{ comment.author.username }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ comment.date_posted|date:"F d, Y" }}</h6>
-                <p class="card-text">{{ comment.content }}</p>
-                <!-- Edit and Delete links for comment author -->
-                {% if comment.author == user %}
-                <a href="{% url 'comment-update' comment.id %}" class="btn btn-sm btn-secondary">Edit</a>
-                <a href="{% url 'comment-delete' comment.id %}" class="btn btn-sm btn-danger">Delete</a>
-                {% endif %}
-                <a href="{% url 'add-reply' post_id=comment.post.id parent_id=comment.id %}"
-                    class="btn btn-sm btn-outline-primary">Reply</a>
+            <div class="ms-2">
+                <h6 class="mt-0">{{ comment.author.username }} <small class="text-muted">{{ comment.date_posted|date:"F d, Y" }}</small></h6>
+                <p>{{ comment.content }}</p>
+                <div class="comment-actions">
+                    {% if comment.author == user %}
+                        <a href="{% url 'comment-update' comment.id %}" class="btn btn-sm btn-secondary">Edit</a>
+                        <a href="{% url 'comment-delete' comment.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    {% endif %}
+                    <a href="{% url 'add-reply' post_id=comment.post.id parent_id=comment.id %}" class="btn btn-sm btn-primary">Reply</a>
+                </div>
             </div>
         </div>
-
-        <!-- Recursively include replies to this comment -->
-        {% if comment.replies %}
-        {% include "blog/comment_thread.html" with comments=comment.replies.all %}
+        {% if comment.replies.all.exists %}
+            <div class="replies ms-3 mt-2">
+                {% include "blog/comment_thread.html" with comments=comment.replies.all %}
+            </div>
         {% endif %}
     </div>
 </div>
 {% endfor %}
-{% endblock content %}
