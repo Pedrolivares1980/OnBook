@@ -2,25 +2,27 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="content-section mt-5 p-2">
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4 text-center">Login</legend>
-
-            {{ form|crispy }}
-        </fieldset>
-        <div class="form-group m-3">
-            <button class="btn btn-primary" type="submit">Login</button>
-            <small class="text-muted ms-2">
-                <a href="{% url 'password_reset' %}" class="btn btn-danger">Forgot Password?</a>
+<div class="login-container">
+    <div class="login-content">
+        <form method="POST" class="form-login">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4 text-center">Login</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group m-3 text-center">
+                <button class="btn btn-primary" type="submit">Login</button>
+                <small class="text-muted ms-2">
+                    <a href="{% url 'password_reset' %}" class="btn btn-danger">Forgot Password?</a>
+                </small>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Need An Account? <a class="ms-2 btn btn-success" href="{% url 'register' %}">Sign Up Now</a>
             </small>
         </div>
-    </form>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            Need An Account? <a class="ms-2 btn btn-success" href="{% url 'register' %}">Sign Up Now</a>
-        </small>
     </div>
 </div>
 {% endblock content %}
+

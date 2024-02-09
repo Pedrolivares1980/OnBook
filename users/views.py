@@ -95,12 +95,18 @@ def UserAdminView(request):
 @staff_member_required
 def user_detail(request, user_id):
     user = get_object_or_404(User, pk=user_id)
-    # Add logic to retrieve user's rental history if needed
+    # Retrieving user's rental history
+    current_rentals = Rental.objects.filter(user=user, actual_return_date__isnull=True)
+    past_rentals = Rental.objects.filter(user=user, actual_return_date__isnull=False)
+
     context = {
         'user': user,
-        # Add additional context for rental history
+        'current_rentals': current_rentals,
+        'past_rentals': past_rentals,
+
     }
-    return render(request, 'users/User_detail.html', context)
+    return render(request, 'users/user_detail.html', context)
+
 
 # View for editing a user by admin
 @staff_member_required

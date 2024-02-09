@@ -2,22 +2,20 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow rounded-2" >
-                <div class="card-body p-5">
-                    <h2 class="card-title text-center mb-4">Join Today</h2>
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ form|crispy }}
-                        <div class="form-group text-center">
-                            <button class="btn btn-primary mt-4" type="submit">Sign Up</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="register-container ">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="register-card shadow-lg rounded-3">
+				<div class="card-body p-5">
+					<h2 class="card-title text-center mb-4">Join Today</h2>
+					<form method="POST" class="register-form">
+						{% csrf_token %}
+						{{ form|crispy }}
+						<button class="register-submit btn-block btn btn-primary mt-4" type="submit">Sign Up</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 {% endblock content %}
