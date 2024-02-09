@@ -10,6 +10,8 @@ from .models import Post, Comment
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.core.exceptions import PermissionDenied
+from django import forms
+
 
 import logging
 
@@ -88,6 +90,16 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
     fields = ["content"]
     template_name = "blog/add_comment.html"
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['content'].widget = forms.Textarea(attrs={
+            'rows': 8,
+            'style': 'resize:none;',  
+            'placeholder': 'Write your comment here...'
+        })
+        form.fields['content'].label = ''
+        return form
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.post = get_object_or_404(Post, pk=self.kwargs["pk"])
@@ -115,6 +127,16 @@ class CommentReplyView(LoginRequiredMixin, CreateView):
     model = Comment
     fields = ["content"]
     template_name = "blog/add_reply.html"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['content'].widget = forms.Textarea(attrs={
+            'rows': 8,
+            'style': 'resize:none;',  
+            'placeholder': 'Write your comment here...'
+        })
+        form.fields['content'].label = ''
+        return form
 
     def form_valid(self, form):
         form.instance.author = self.request.user

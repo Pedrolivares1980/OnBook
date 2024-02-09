@@ -2,28 +2,32 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="card">
+<div class="d-flex align-items-center justify-content-center">
+  <div class="card ">
     <div class="card-body">
-        {% if post_detail %}
-            <img class="rounded-circle article-img" src="{{ post_detail.author_profile_image }}" alt="{{ post_detail.author_username }}">
-            <h4>Comment on "{{ post_detail.title }}"</h4>
-            <p>By: {{ post_detail.author_username }} on {{ post_detail.date_posted|date:"F d, Y" }}</p>
-            <p>{{ post_detail.content }}</p>
-        {% elif comment_detail %}
-            <img class="rounded-circle" src="{{ comment_detail.author_profile_image }}" alt="{{ comment_detail.author_username }}">
-            <h4>Reply to Comment by "{{ comment_detail.author_username }}"</h4>
-            <p>Posted on {{ comment_detail.date_posted|date:"F d, Y" }}</p>
-            <p>{{ comment_detail.content|truncatewords:30 }}</p>
-        {% endif %}
-        <h4 class="mt-4">Add a Comment</h4>
-        <form method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-primary">Post Comment</button>
-            <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Cancel</button>
-        </form>
+      {% if post_detail %}
+      <img class="rounded-circle article-img" src="{{ post_detail.author_profile_image }}"
+        alt="{{ post_detail.author_username }}">
+      <h4>Comment on "{{ post_detail.title }}"</h4>
+      <p>By: {{ post_detail.author_username }} on {{ post_detail.date_posted|date:'dS, F, Y' }}</p>
+      <p>{{ post_detail.content }}</p>
+      {% elif comment_detail %}
+      <img class="rounded-circle" src="{{ comment_detail.author_profile_image }}"
+        alt="{{ comment_detail.author_username }}">
+      <h4>Reply to Comment by "{{ comment_detail.author_username }}"</h4>
+      <p>Posted on {{ comment_detail.date_posted|date:'dS, F, Y' }}</p>
+      <p>{{ comment_detail.content|truncatewords:30 }}</p>
+      {% endif %}
+      <h4 class="mt-4">Add a Comment:</h4>
+      <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+          <button class="btn btn-danger" type="button" onclick="history.back()">Cancel</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
 {% endblock content %}
-
-

@@ -1,15 +1,23 @@
 {% extends "books/base.html" %}
-{% load crispy_forms_tags %} <!-- Updated here to load crispy forms -->
-{% block content %}
-<form method="POST">
-    {% csrf_token %}
-    <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Join Today</legend>
+{% load crispy_forms_tags %}
 
-        {{ form|crispy }} <!-- Updated to load the form and let crispy take care of the formating -->
-    </fieldset>
-    <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Sign Up</button>
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow rounded-2" >
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Join Today</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary mt-4" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+</div>
 {% endblock content %}

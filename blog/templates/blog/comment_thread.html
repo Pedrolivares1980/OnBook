@@ -4,7 +4,7 @@
         <div class="d-flex align-items-center">
             <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
             <div class="ms-2">
-                <h6 class="mt-0">{{ comment.author.username }} <small class="text-muted">{{ comment.date_posted|date:"F d, Y" }}</small></h6>
+                <h6 class="mt-0">{{ comment.author.username }} <small class="text-muted">{{ comment.date_posted|date:'dS, F, Y'}}</small></h6>
                 <p>{{ comment.content }}</p>
                 <div class="comment-actions">
                     {% if comment.author == user %}

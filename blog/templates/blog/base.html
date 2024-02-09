@@ -25,16 +25,16 @@
   <meta name="author" content="Pedro Olivares">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
   <header class="site-header">
     <nav class="navbar navbar-expand-md bg-primary fixed-top">
-      <div class="container">
-        <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Blog</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
+      <div class="container ">
+        <a class="navbar-brand mr-4 logo" href="{% url 'blog-home' %}">OnBook Blog</a>
+        <button class="navbar-toggler bg-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle"
           aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarToggle">
+        <div class="collapse navbar-collapse text-center" id="navbarToggle">
           <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href="{% url 'books_home' %}">OnBook</a>
           </div>
@@ -54,7 +54,7 @@
       </div>
     </nav>
   </header>
-  <main role="main" class="container">
+  <main role="main" class="container vh-100">
     <div class="row">
       <div class="col-md-12">
         {% if messages %}
@@ -73,7 +73,7 @@
       <div class="row">
         <!-- Slogan -->
         <div class="col-md-4">
-          <h4 class="logo text-danger fs1 fw-bolder">OnBook</h4>
+          <h4 class="logo  ">OnBook</h4>
           <p>Rent your next book with us.</p>
         </div>
 
