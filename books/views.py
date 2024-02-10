@@ -82,7 +82,7 @@ class BookCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
     model = Book
     form_class = BookForm
     template_name = 'books/book_form.html'
-    success_url = reverse_lazy('book_list')
+    success_url = reverse_lazy('book_admin')
     
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -100,7 +100,7 @@ class BookUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
 
     def get_success_url(self):
         """Redirect to book detail page after successful update."""
-        return reverse('book_detail', kwargs={'pk': self.object.pk})
+        return reverse('book_admin')
 
 
     def form_valid(self, form):
@@ -112,7 +112,7 @@ class BookDeleteView(LoginRequiredMixin, StaffRequiredMixin, DeleteView):
     """View for deleting a book."""
     model = Book
     template_name = 'books/book_confirm_delete.html'
-    success_url = reverse_lazy('book_list')
+    success_url = reverse_lazy('book_admin')
 
 class BookAdminView(BookMixin, LoginRequiredMixin, UserPassesTestMixin, ListView):
     """Admin view for managing books."""

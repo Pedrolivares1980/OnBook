@@ -90,7 +90,6 @@ def edit_profile(request, user_id=None):
 # View for admin to see all users
 @staff_member_required
 def UserAdminView(request):
-    # Filtering users based on query
     queryset = User.objects.all()
     query = request.GET.get('q')
     if query:

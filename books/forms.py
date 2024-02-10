@@ -70,7 +70,7 @@ class BookForm(forms.ModelForm):
                     img = ImageOps.pad(img, (min_width, min_height), color="black")
 
                     # Resize the image if necessary
-                    img.thumbnail((600, 600), Image.ANTIALIAS)
+                    img.thumbnail((600, 600), Image.Resampling.LANCZOS)
 
                     # Save the processed image to a BytesIO buffer
                     in_mem_file = BytesIO()
