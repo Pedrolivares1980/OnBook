@@ -23,7 +23,7 @@
             <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete Account</a>
           </div>
           <div class="mt-2">
-            <a class="btn btn-success" href="{% url 'inbox' %}">Inbox</a>
+            <a class="btn btn-success" href="{% if request.user.is_staff and user.id != request.user.id %}{% url 'messaging:user_inbox' user.id %}{% else %}{% url 'messaging:inbox' %}{% endif %}">Inbox</a>
             <a class="btn btn-warning" href="{% url 'admin_users' %}">Back</a>
           </div>
         </div>
