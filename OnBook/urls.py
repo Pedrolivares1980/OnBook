@@ -9,7 +9,7 @@ urlpatterns = [
     path("users/", include("users.urls")),
     path("blog/", include("blog.urls")),
     path("", include("books.urls")),
-    path("messaging/", include("messaging.urls")),
+    path('messaging/', include('messaging.urls')),
     path("rent/", include("rent.urls")),
 ]
 

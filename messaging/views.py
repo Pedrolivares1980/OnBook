@@ -10,23 +10,15 @@ from django.urls import reverse
 
 
 @login_required
-def inbox(request, user_id=None):
+def inbox(request):
     """
     Display the inbox with a list of users who have had conversations with the current user.
     """
-    if user_id:
-        if not request.user.is_staff:
-            messages.error(request, "You are not authorized to view this inbox.")
-            return redirect('some_error_handling_view')
-        target_user = get_object_or_404(User, id=user_id)
-    else:
-        target_user = request.user
-
-    all_users = User.objects.exclude(id=target_user.id)
+    all_users = User.objects.exclude(id=request.user.id)
     users_with_conv = User.objects.filter(
-        Q(sent_messages__receiver=target_user) | 
-        Q(received_messages__sender=target_user)
-    ).distinct().exclude(id=target_user.id)
+        Q(sent_messages__receiver=request.user) | 
+        Q(received_messages__sender=request.user)
+    ).distinct().exclude(id=request.user.id)
 
     # Get senders of unread messages
     unread_senders = ChatMessage.objects.filter(receiver=request.user, is_read=False).values_list('sender', flat=True).distinct()
