@@ -7,6 +7,10 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, UserProf
 from rent.models import Rental
 from django.db.models import Q
 from messaging.models import ChatMessage
+from .models import Profile
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
 
 # User registration view
 def register(request):
@@ -132,3 +136,26 @@ def delete_user(request, user_id):
     else:
         messages.error(request, 'You do not have permission to delete this user.')
         return redirect('home')
+
+@login_required
+def download_user_data(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    profile = Profile.objects.get(user=request.user)
+
+    p.drawString(100, 800, "User Information")
+    p.drawString(100, 780, f"Username: {request.user.username}")
+    p.drawString(100, 760, f"Email: {request.user.email}")
+
+    rentals = Rental.objects.filter(user=request.user)
+    y_position = 720 
+    for rental in rentals:
+        p.drawString(100, y_position, f"Book: {rental.book.name}, Rental Date: {rental.rental_date.strftime('%d-%m-%Y')}")
+        y_position -= 20
+
+    p.showPage()
+    p.save()
+
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='user_data.pdf')

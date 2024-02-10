@@ -16,5 +16,6 @@ urlpatterns = [
     path("users/", user_views.UserAdminView, name='admin_users'),
     path("users/<int:user_id>/", user_views.user_detail, name='user_detail'),
     path("users/delete_user/<int:user_id>/", user_views.delete_user, name='delete_user'),
+    path("users/download_data/", user_views.download_user_data, name='download_user_data'),
 ]
 
