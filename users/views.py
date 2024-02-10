@@ -57,18 +57,26 @@ def profile(request):
 
 # User profile editing view
 @login_required
-def edit_profile(request):
-    # Handling profile edit requests
+def edit_profile(request, user_id=None):
+    if user_id:
+        if not request.user.is_staff:
+            messages.error(request, "You are not authorized to edit this profile.")
+            return redirect('some_error_page')
+        user = get_object_or_404(User, pk=user_id)
+    else:
+        user = request.user
+
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        u_form = UserUpdateForm(request.POST, instance=user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
-            return redirect('profile')
+            messages.success(request, 'Your profile has been updated!')
+            return redirect('profile', user_id=user.id if user_id else None)
     else:
-        u_form = UserUpdateForm(instance=request.user)
-        p_form = ProfileUpdateForm(instance=request.user.profile)
+        u_form = UserUpdateForm(instance=user)
+        p_form = ProfileUpdateForm(instance=user.profile)
 
     context = {
         'u_form': u_form,
@@ -76,7 +84,6 @@ def edit_profile(request):
     }
 
     return render(request, 'users/edit_profile.html', context)
-
 # View for admin to see all users
 @staff_member_required
 def UserAdminView(request):

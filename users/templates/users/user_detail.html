@@ -14,7 +14,12 @@
           <div class="media-body">
             <h2 class="account-heading">{{ user.username }}</h2>
             <p class="text-secondary">{{ user.email }}</p>
+            {% if request.user.is_staff %}
+            <a href="{% url 'admin_edit_profile' user.id %}" class="btn btn-info">Edit Profile</a>
+            {% else %}
             <a href="{% url 'edit_profile' %}" class="btn btn-info">Edit Profile</a>
+            {% endif %}
+
             <a href="{% url 'delete_user' user.id %}" class="btn btn-danger">Delete Account</a>
           </div>
           <div class="mt-2">
