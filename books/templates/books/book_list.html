@@ -46,28 +46,31 @@
   </div>
 </div>
 <h2 class="text-center mt-4">Our Book Collection</h2>
-<div class="row">
-  {% for book in books %}
-  <div class="col-12 col-md-6 col-lg-4 d-flex flex-column justify-content-center flex-md-row flex-md-wrap">
-    <div class="home-card ms-4 ms-md-0 m-2 mt-md-3">
-      <div class="face front">
-        {% if book.cover_image %}
-        <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid">
-        {% else %}
-        <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
-        {% endif %}
-      </div>
-      <div class="face back">
-        <h3>{{ book.name }}</h3>
-        <h4>{{ book.author }}</h4>
-        <div class="link">
-          <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">View Book</a>
+<div class="container">
+  <div class="row justify-content-center">
+    {% for book in books %}
+    <div class="col-12 col-sm-6 col-lg-4 d-flex align-items-center">
+      <div class="home-card m-2 mt-md-3 w-100">
+        <div class="face front">
+          {% if book.cover_image %}
+          <img src="{{ book.cover_image.url }}" alt="{{ book.name }}" class="img-fluid">
+          {% else %}
+          <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
+          {% endif %}
+        </div>
+        <div class="face back">
+          <h3>{{ book.name }}</h3>
+          <h4>{{ book.author }}</h4>
+          <div class="link">
+            <a href="{% url 'book_detail' book.id %}" class="btn btn-primary">View Book</a>
+          </div>
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
+
 <!-- Pagination Links -->
 <div class="pagination justify-content-center mt-3 mb-2">
   <span class="step-links">
