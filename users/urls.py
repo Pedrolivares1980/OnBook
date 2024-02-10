@@ -12,7 +12,7 @@ urlpatterns = [
     path("users/password-reset/done/", auth_views.PasswordResetDoneView.as_view(template_name="users/password_reset_done.html"), name="password_reset_done"),
     path("users/password-reset-confirm/<uidb64>/<token>/", auth_views.PasswordResetConfirmView.as_view(template_name="users/password_reset_confirm.html"), name="password_reset_confirm"),
     path("users/password-reset-complete/", auth_views.PasswordResetCompleteView.as_view(template_name="users/password_reset_complete.html"), name="password_reset_complete"),
-    path('admin/users/', user_views.UserAdminView, name='admin_users'),
-    path('admin/users/<int:user_id>/', user_views.user_detail, name='user_detail'),
-    path('users/delete_user/<int:user_id>/', user_views.delete_user, name='delete_user'),
+    path("users/", user_views.UserAdminView, name='admin_users'),
+    path("users/<int:user_id>/", user_views.user_detail, name='user_detail'),
+    path("users/delete_user/<int:user_id>/", user_views.delete_user, name='delete_user'),
 ]
