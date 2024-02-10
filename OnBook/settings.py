@@ -9,7 +9,7 @@ load_dotenv(BASE_DIR / '.env')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = False
+DEBUG = os.getenv("DEBUG") == "TRUE"
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", os.getenv("RENDER_HOSTNAME", "")]
 
