@@ -102,6 +102,7 @@ class BookUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):
         """Redirect to book detail page after successful update."""
         return reverse('book_detail', kwargs={'pk': self.object.pk})
 
+
     def form_valid(self, form):
         """Handle form submission."""
         messages.success(self.request, 'Book updated successfully.')

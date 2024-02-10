@@ -199,6 +199,16 @@ small{
   transform: perspective(37.5rem) rotateY(360deg);
 }
 
+/* ----------------------Book Form------------ */
+
+.book_form_container{
+  background: var(--bg-second);
+  border-radius: 1rem;
+}
+
+#id_description{
+  height: 10rem;
+}
 
 /* -------------------------------Blog----------------------------- */
 
@@ -291,6 +301,8 @@ small{
   background-color: transparent;
   border: none;
 }
+
+/* -------------------------------------------------------------------------Users---------------------------------------------------------------- */
 
 /*---------------------------------------- Logout ---------------------------*/
 
