@@ -3,27 +3,26 @@
 
 {% block content %}
 <div class="card ">
-    <div class="card-body">
-        <!-- Display the parent comment's details -->
-        <div class="media ">
-            <img class="rounded-circle article-img" src="{{ parent_comment.author.profile.image.url }}">
-            <div class="media-body ml-2">
-                <h5 class="card-title">{{ parent_comment.author.username }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ parent_comment.date_posted|date:'dS, F, Y' }}</h6>
-                <p class="card-text">{{ parent_comment.content }}</p>
-            </div>
-        </div>
-
-        <h4 class="mt-4">Reply to the Comment:</h4>
-        <form method="post">
-            {% csrf_token %}
-            {{ form|crispy }}
-<div class="text-center">
-    <button type="submit" class="btn btn-primary">Post Reply</button>
-    <button class="btn btn-danger" type="button" onclick="history.back()">Cancel</button>
-</div>
-        </form>
+  <div class="card-body">
+    <!-- Display the parent comment's details -->
+    <div class="media ">
+      <img class="rounded-circle article-img" src="{{ parent_comment.author.profile.image.url }}">
+      <div class="media-body ml-2">
+        <h5 class="card-title">{{ parent_comment.author.username }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ parent_comment.date_posted|date:'dS, F, Y' }}</h6>
+        <p class="card-text">{{ parent_comment.content }}</p>
+      </div>
     </div>
+
+    <h4 class="mt-4">Reply to the Comment:</h4>
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Post Reply</button>
+        <button class="btn btn-danger" type="button" onclick="history.back()">Cancel</button>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock content %}
-

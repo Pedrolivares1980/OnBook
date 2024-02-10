@@ -3,12 +3,16 @@
 
 {% block content %}
 <div class="container mt-3 ">
-    <h2>Update Comment</h2>
-    <form method="post">
+  <div class="custom-comment">
+    <div class="comment-body">
+      <h2>Update Comment</h2>
+      <form method="post">
         {% csrf_token %}
-        {{ form|crispy }}  <!-- Render the form fields with crispy forms -->
+        {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Update Comment</button>
-        <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Cancel</button>
-    </form>
+        <button class="btn btn-danger" type="button" onclick="history.back()">Cancel</button>
+      </form>
+    </div>
+  </div>
 </div>
 {% endblock content %}

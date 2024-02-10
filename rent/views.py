@@ -31,15 +31,14 @@ def rent_book(request, book_id):
     return render(request, 'rent/rent_confirmation.html', {'book': book})
 
 def return_book(request, rental_id):
-    # Obtén el alquiler basado en el ID y verifica que pertenezca al usuario y que aún no haya sido devuelto
+    # Get the rent based on the ID and verify that it belongs to the user and has not yet been returned.
     rental = get_object_or_404(Rental, id=rental_id, user=request.user, actual_return_date__isnull=True)
 
-    # Marca el libro como devuelto actualizando el campo 'actual_return_date'
+    # Mark the book as returned by updating the field 'actual_return_date'.
     rental.actual_return_date = timezone.now()
     rental.save()
 
-    # Actualiza la disponibilidad del libro si es necesario
-    # Suponiendo que hay un campo 'is_available' en el modelo Book
+    # Update the availability of the book
     rental.book.is_available = True
     rental.book.save()
 

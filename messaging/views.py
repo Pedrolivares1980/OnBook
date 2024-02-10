@@ -44,7 +44,6 @@ def start_conversation(request):
         # Redirect to the conversation view with the selected user
         return redirect('send_message', user_id=recipient.id)
     else:
-        # If not a POST request, redirect back to the inbox
         return redirect('inbox')
 
 

@@ -37,7 +37,7 @@ class UserTestCase(TestCase):
         self.client.login(username='testuser', password='password')
         image = SimpleUploadedFile("test_image.jpg", b"file_content", content_type="image/jpeg")
         response = self.client.post(reverse('edit_profile'), {'username': self.user.username, 'email': self.user.email, 'image': image})
-        self.assertEqual(response.status_code, 200)  # Expect successful response instead of redirection
+        self.assertEqual(response.status_code, 200)
 
 
 
@@ -50,20 +50,20 @@ class UserTestCase(TestCase):
         with open(temp_file, 'rb') as img:
             response = self.client.post(reverse('edit_profile'), {'username': self.user.username, 'email': self.user.email, 'image': img})
         os.remove(temp_file)
-        self.assertEqual(response.status_code, 302)  # Expect redirection after successful update
+        self.assertEqual(response.status_code, 302) 
 
 
     def test_admin_views_access(self):
         # Test admin's access to admin-specific views
         self.client.login(username='adminuser', password='adminpassword')
         response = self.client.get(reverse('admin_users'))
-        self.assertEqual(response.status_code, 200)  # Admin should have access
+        self.assertEqual(response.status_code, 200)
 
     def test_admin_edit_user(self):
         # Test admin editing a user's information
         self.client.login(username='adminuser', password='adminpassword')
         response = self.client.post(reverse('edit_user', args=[self.user.id]), {'username': 'editeduser', 'email': 'editeduser@example.com'})
-        self.assertEqual(response.status_code, 302)  # Expect redirection after successful edit
+        self.assertEqual(response.status_code, 302)
         edited_user = User.objects.get(id=self.user.id)
         self.assertEqual(edited_user.username, 'editeduser')
 
@@ -71,19 +71,17 @@ class UserTestCase(TestCase):
         # Test admin deleting a user
         self.client.login(username='adminuser', password='adminpassword')
         response = self.client.post(reverse('delete_user', args=[self.user.id]))
-        self.assertEqual(response.status_code, 302)  # Expect redirection after successful deletion
+        self.assertEqual(response.status_code, 302)
         self.assertFalse(User.objects.filter(id=self.user.id).exists())
 
     def test_non_admin_access_restricted_views(self):
         # Test that non-admin users cannot access admin-only views
         self.client.login(username='testuser', password='password')
         response = self.client.get(reverse('admin_users'))
-        self.assertNotEqual(response.status_code, 200)  # Non-admin should not have access
+        self.assertNotEqual(response.status_code, 200)
 
     def test_user_detail_view_by_admin(self):
         # Test admin viewing a user's detail
         self.client.login(username='adminuser', password='adminpassword')
         response = self.client.get(reverse('user_detail', args=[self.user.id]))
-        self.assertEqual(response.status_code, 200)  # Admin should be able to access user detail view
-
-    # Add more tests as needed...
+        self.assertEqual(response.status_code, 200)

@@ -35,7 +35,7 @@ def about(request):
     return render(request, 'books/about.html')
 
 class BookListView(BookMixin, ListView):
-    """View for listing books with optional filters."""
+    """View for listing books with filters."""
     model = Book
     template_name = 'books/book_list.html'
     context_object_name = 'books'
@@ -90,8 +90,6 @@ class BookCreateView(LoginRequiredMixin, StaffRequiredMixin, CreateView):
         return response
 
     def form_invalid(self, form):
-        # Imprime los errores de formulario para depuración
-        print(form.errors)
         return super().form_invalid(form)
 
 class BookUpdateView(LoginRequiredMixin, StaffRequiredMixin, UpdateView):

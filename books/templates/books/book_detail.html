@@ -3,24 +3,30 @@
 {% block content %}
 <div class="card mb-2">
   <div class="card-header">
-    <h2 class="card-title">{{ object.name }}</h2>
+    <h2 class="card-title text-center">{{ object.name }}</h2>
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 mb-2">
         {% if object.cover_image %}
         <img src="{{ object.cover_image.url }}" alt="{{ object.name }}" class="img-fluid">
         {% else %}
         <img src="{% static 'images/book_default.jpg' %}" alt="Default Book Image" class="img-fluid">
         {% endif %}
       </div>
-      <div class="col-md-8">
-        <p class="card-text">Author: {{ object.author }}</p>
-        <p class="card-text">Publisher: {{ object.publisher }}</p>
-        <p class="card-text">Publish Date: {{ object.publish_date|date:"d/m/Y" }}</p>
-        <p class="card-text">Language: {{ object.language }}</p>
-        <p class="card-text">Category: {{ object.get_category_display }}</p>
-        <p class="card-text">Description: {{ object.description }}</p>
+      <div class="col-md-8 ">
+        <h3 class="card-text">Author:</h3>
+        <p>{{ object.author }}</p>
+        <h3 class="card-text">Publisher: </h3>
+        <p>{{ object.publisher }}</p>
+        <h3 class="card-text">Publish Date: </h3>
+        <p>{{ object.publish_date|date:"d/m/Y" }}</p>
+        <h3 class="card-text">Language: </h3>
+        <p>{{ object.language }}</p>
+        <h3 class="card-text">Category: </h3>
+        <p>{{ object.get_category_display }}</p>
+        <h3 class="card-text">Description:  </h3>
+        <p>{{ object.description }}</p>
         <div class="d-flex flex-wrap align-items-center">
           {% if user.is_authenticated %}
           {% if book.is_available %}
@@ -44,7 +50,7 @@
     </div>
   </div>
   <div class="card-footer text-muted">
-    <button class="btn btn-outline-secondary" type="button" onclick="history.back()">Back</button>
+    <button class="btn btn-danger" type="button" onclick="history.back()">Back</button>
   </div>
 </div>
 {% endblock %}

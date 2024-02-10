@@ -1,19 +1,16 @@
 {% extends "blog/base.html" %}
-{% load crispy_forms_tags %} <!-- Load crispy forms tags for styling the forms -->
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container ">
+<div class="container">
   <article class="media content-section">
-    <!-- Display the post's author image -->
     <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
   
     <div class="media-body mt-2">
-      <!-- Post metadata such as author and date posted -->
       <div class="article-metadata ">
         <h3 class="mr-2" >{{ object.author }}</h3>
         <small class="text-muted">{{ object.date_posted|date:'dS, F, Y'}}</small>
-  
-        <!-- Options to update or delete the post for the author -->
+
         {% if object.author == user %}
         <div>
           <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
@@ -22,7 +19,6 @@
         {% endif %}
       </div>
   
-      <!-- Post title and content -->
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="article-content">{{ object.content }}</p>
     </div>
@@ -35,7 +31,7 @@
   </div>
   
   <!-- Display existing comments and their replies in a nested structure -->
-  <div class="comments mt-3">
+  <div class="comments mt-3 ">
     <h3 class="text-center">Comments:</h3>
   
     {% if main_comments %}

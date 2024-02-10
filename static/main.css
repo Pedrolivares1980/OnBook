@@ -43,22 +43,8 @@
   --fs-h5-laptop: 1.2rem;
 }
 
-/* Scroll bar */
+/*---------------Body and Main-------------- */
 
-::-webkit-scrollbar {
-  width: .8rem;
-  background-color: black;
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: .5rem;
-  background-color: var(--container-light);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--container-dark);
-}
-/*----------------------------------------------------------------------------- Body and Main */
 body{
   background: var(--bg-first);
   color: var(--text-color);
@@ -96,7 +82,7 @@ small{
   font-size: var(--fs-sm-mobile);
 }
 
-/* Navbar */
+/*---------------------------- Navbar-------------------- */
 
 .navbar-nav .nav-link,
 .navbar .dropdown-item
@@ -114,7 +100,7 @@ small{
   color: red;
 }
 
-/*  -----------------------------------------------Django Messages----------------------------*/
+/*  ----------------------Django Messages----------------------------*/
 
 .alert {
   text-align: center;
@@ -123,13 +109,13 @@ small{
 }
 
 
-/* --------------------------------------------------Home */
+/* -------------------------Home------------------------------- */
 
 .home-container{
   background: var(--bg-second);
 }
 
-  /* Carrousel */
+  /*---------- Carrousel------- */
 
 #bookCarousel {
   background-color: black; 
@@ -144,8 +130,7 @@ small{
   margin: 0 auto; 
 }
 
-/*------------------------------------------------------- Books Details */
-/* Cards */
+/*--------------------------------- Cards------------------------ */
 
 .home-card{
   position: relative;
@@ -215,9 +200,10 @@ small{
 }
 
 
-/* ------------------Blog----------------------------- */
+/* -------------------------------Blog----------------------------- */
 
   /* Containers */
+
   .content-section {
     background: var(--container-first);
     padding: 10px 20px;
@@ -279,20 +265,19 @@ small{
     margin-bottom: .625rem;
 }
 
-.reply {
+  .reply {
     background-color:  rgba(0,0,0,0.3);
     padding: 1rem;
     border-radius: .315rem;
     margin-bottom: .625rem;
     margin-left: 1.3rem;
-}
+  }
 
-.comment-actions a {
-  margin-right: 5px;
-}
+  .comment-actions a {
+    margin-right: 5px;
+  }
 
-
-/* About */
+/*--------------------------------------- About--------------------------- */
 
 .about-container{
   background: var(--container-second);
@@ -306,7 +291,8 @@ small{
   background-color: transparent;
   border: none;
 }
-/*---------------------------------------- Logout */
+
+/*---------------------------------------- Logout ---------------------------*/
 
 .logout-container{
   margin-top: 1rem;
@@ -327,12 +313,12 @@ small{
   background: rgba(252, 250, 250, 0.808);
 }
 
-/*---------------------------------------- Login */
+/*---------------------------------------- Login------------------------------ */
 
 .login-container {
   margin-top: 1rem;
   margin-bottom: 1.2rem;
-  background-image: url('images/assets/library-2507902_640.webp'); /* Adjust the path as needed */
+  background-image: url('images/assets/library-2507902_640.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -345,10 +331,10 @@ small{
 
 .login-content {
   width: 70%;
-  background: rgba(252, 250, 250, 0.808); /* Semi-transparent white */
+  background: rgba(252, 250, 250, 0.808);
   padding: 2rem;
-  border-radius: 10px; /* Rounded borders */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow for depth */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .form-login {
@@ -356,13 +342,13 @@ small{
 }
 
 .form-group .btn {
-  display: block; /* Ensure buttons are full-width on mobile */
-  width: 100%; /* Full width for mobile-first approach */
-  margin-top: 0.5rem; /* Space above each button */
-  margin-bottom: 0.5rem; /* Space below each button */
+  display: block; 
+  width: 100%; 
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-/* Register */
+/*--------------------------------- Register--------------------------------- */
 
 .register-container {
   padding: 1rem;
@@ -376,27 +362,29 @@ small{
 .register-form .register-submit {
   padding: 0.5rem 1rem;
   margin-top: 0.5rem;
-  width: 100%; /* Full width */
+  width: 100%; 
 }
 
-/* password reset */
+/*---- password reset------ */
 
-.password-container{
-  width: 100%;
-  height: 30rem;
-  padding: 3rem;
-  background: var(--container-dark);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .password-container{
+    width: 100%;
+    height: 30rem;
+    padding: 3rem;
+    background: var(--container-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.password-container form{
-  width: 90%;
-  padding: 4rem;
-  background:var(--container-light);
-  border-radius: 1rem;
-}
+  .password-container form{
+    width: 90%;
+    padding: 4rem;
+    background:var(--container-light);
+    border-radius: 1rem;
+  }
+
+
 /*--------------------------------------------- Messagin app----------------------------------- */
 
 .conversation-container{
@@ -436,6 +424,7 @@ small{
 }
 
 /* Send Message */
+
 .custom-textarea {
   resize: none; 
   width: 100%; 
@@ -456,16 +445,8 @@ small{
   max-width: 600px;
 }
 
+/*-------------------------- Tables ---------------------------*/
 
-/*----------------------------------------------- Profile--------------------------------------- */
-
-/* ------------------------------------------------Book cover */
-
-
-
-/* Details */
-
-/* Tables */
 .book-cover-container {
   display: flex;
   justify-content: center;
@@ -478,7 +459,7 @@ small{
 }
 
 
-/* Table description responsive */
+/* -------------------------Table description responsive-------------------*/
 
 .desc-limited {
   display: -webkit-box;
@@ -489,7 +470,7 @@ small{
 }
 
 
-/* Delete confirmation */
+/*------------------------- Delete confirmation----------------------------- */
 
 .overlay {
   position: fixed;
@@ -532,6 +513,7 @@ small{
 
 
 /* ----------------------------------------------------------large screens------------------------------------------------------------ */
+
 @media only screen and (min-width: 768px){ 
 
   /* Test sizes */
@@ -571,30 +553,30 @@ small{
 
   }
 
-.logout-content{
-  width:  30%;
-  height: 30%;
-}
+  .logout-content{
+    width:  30%;
+    height: 30%;
+  }
 
 /* --------------------------login */
-.login-container {
-  margin-top: 3rem;
-  margin-bottom: 3.2rem;
-  height: 60rem;
-}
+  .login-container {
+    margin-top: 3rem;
+    margin-bottom: 3.2rem;
+    height: 60rem;
+  }
 
-/* register */
-.register-container {
-  padding: 2rem;
-}
+  /*----------------------- register */
+  .register-container {
+    padding: 2rem;
+  }
 
-.register-card {
-  max-width: 500px; /* Adjust card size for larger screens */
-  margin: auto; /* Center the card */
-}
+  .register-card {
+    max-width: 500px; 
+    margin: auto;
+  }
 
-.register-form .register-submit {
-  padding: 0.75rem 1.5rem; /* Larger padding for larger screens */
-  font-size: 1.2rem; /* Larger font size */
-}
+  .register-form .register-submit {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+  }
 }

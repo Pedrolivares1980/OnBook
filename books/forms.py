@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError
 import logging
 
 
-# Set up logging, with an appropriate name and level
+# Set up logging
 logger = logging.getLogger(__name__)
 
 
@@ -64,7 +64,7 @@ class BookForm(forms.ModelForm):
                     # Correct the orientation of the image based on EXIF data
                     img = self.correct_image_orientation(img)
 
-                    # Ensure the image has a minimum size (600x600 in this case)
+                    # Ensure the image has a minimum size (600px x 600px) and a a background color(Black)
                     min_width = 600
                     min_height = 600
                     img = ImageOps.pad(img, (min_width, min_height), color="black")
@@ -82,12 +82,10 @@ class BookForm(forms.ModelForm):
                         cover_image.name, content=File(in_mem_file), save=False
                     )
                 except UnidentifiedImageError:
-                    # Log the error for developer's debugging purposes
                     logger.error(
                         f"UnidentifiedImageError: The image {cover_image.name} could not be processed."
                     )
 
-                    # Add an error message to the form to inform the user with the 'error' message tag
                     self.add_error(
                         "cover_image",
                         ValidationError(
@@ -99,13 +97,13 @@ class BookForm(forms.ModelForm):
                     )
 
         if commit:
-            book.save()  # Save the book instance to the database
+            book.save() 
             self._save_m2m()  # Save many-to-many relations
 
         return book
 
     def correct_image_orientation(self, img):
-        """Correct the orientation of an image using EXIF data."""
+        """Correct the orientation of an image."""
         if hasattr(img, "_getexif"):
             exif = img._getexif()
             if exif:
@@ -119,7 +117,7 @@ class BookForm(forms.ModelForm):
         return img
 
     def resize_image(self, img, max_size=(600, 600)):
-        """Resize an image to fit within a specified size."""
+        """Resize an image to fit within the specified size(600px x 600px)."""
         if img.height > max_size[1] or img.width > max_size[0]:
-            img.thumbnail(max_size)  # Resize the image in-place
+            img.thumbnail(max_size)
         return img
