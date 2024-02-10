@@ -89,7 +89,7 @@ def UserAdminView(request):
     context = {
         'users': queryset,
     }
-    return render(request, 'users/Admin_users.html', context)
+    return render(request, 'users/admin_users.html', context)
 
 # User detail view for admin
 @staff_member_required
