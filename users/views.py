@@ -105,8 +105,7 @@ def user_detail(request, user_id):
         'past_rentals': past_rentals,
 
     }
-    return render(request, 'users/user_detail.html', context)
-
+    return render(request, 'admin/user_detail.html', context)
 
 # View for editing a user by admin
 @staff_member_required
@@ -122,7 +121,7 @@ def edit_user(request, user_id):
     else:
         user_form = UserForm(instance=user)
         profile_form = UserProfileForm(instance=user.profile)
-    return render(request, 'users/user_detail.html', {'user_form': user_form, 'profile_form': profile_form, 'user': user})
+    return render(request, 'admin/user_detail.html', {'user_form': user_form, 'profile_form': profile_form, 'user': user})
 
 # View for deleting a user by admin or user
 @login_required
