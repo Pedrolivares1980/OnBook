@@ -107,21 +107,6 @@ def user_detail(request, user_id):
     }
     return render(request, 'admin/user_detail.html', context)
 
-# View for editing a user by admin
-@staff_member_required
-def edit_user(request, user_id):
-    user = get_object_or_404(User, id=user_id)
-    if request.method == "POST":
-        user_form = UserForm(request.POST, instance=user)
-        profile_form = UserProfileForm(request.POST, instance=user.profile)
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
-            return redirect('user_detail', user_id=user_id)
-    else:
-        user_form = UserForm(instance=user)
-        profile_form = UserProfileForm(instance=user.profile)
-    return render(request, 'admin/user_detail.html', {'user_form': user_form, 'profile_form': profile_form, 'user': user})
 
 # View for deleting a user by admin or user
 @login_required
