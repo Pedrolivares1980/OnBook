@@ -202,7 +202,7 @@ small{
 /* ----------------------Book Form------------ */
 
 .book_form_container{
-  background: var(--bg-second);
+  background: var(--container-first);
   border-radius: 1rem;
 }
 
